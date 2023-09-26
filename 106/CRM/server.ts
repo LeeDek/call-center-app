@@ -14,11 +14,14 @@ app.use(express.static("public"));
 
 //body
 // app.use(express.json());
-// const {MONGO_URI} = process.env
+const {MONGO_URI} = process.env
 
-// mongoose.connect(MONGO_URI).then (() => {
-//   console.info("MongoDB connected")
-// }).catch(err =>{console.error(err)})
+console.log(MONGO_URI);
+
+
+mongoose.connect(MONGO_URI).then (() => {
+  console.info("MongoDB connected")
+}).catch(err =>{console.error(err)})
 
 //router to products
 
@@ -27,7 +30,7 @@ import userRouter from "./API/users/userRouter";
 //tells express to use userRouter on the intial route "/API/users"
 app.use("/API/users", userRouter)
 
-import callsRoutes from "./API/calls/callsRoutes";
+import callsRoutes from "./API/calls/callsRoutes/callsRotes";
 app.use("/API/calls", callsRoutes);
 
 app.use((err, req, res, next) => { 
