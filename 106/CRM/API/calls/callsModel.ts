@@ -3,8 +3,6 @@ import { Department } from '../enums/departments'
 import { Status } from '../enums/status'
 import { User } from '../users/userModel'
 
-
-
 export class Call {
   id: string;
   constructor(
@@ -22,15 +20,13 @@ export class Call {
   }
 }
 
-
-
 export const userCalls: UserCalls[] = [];
 
 const CallSchema = new Schema({
   fullName: { type: String, required: true },
   phone: { type: String, required: true },
   date: { type: String, required: true },
-  dept: { type: String, required: false },
+  dept: { type: String, enum: Object.values(Status), default: Department.Operations },
   status: { type: String, enum: Object.values(Status), default: Status.Open },
   user: { type: Schema.Types.ObjectId, ref: 'users', required: true }, // Reference to the user
 });
