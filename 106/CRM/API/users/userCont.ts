@@ -89,42 +89,42 @@ export const login = async (req: any, res: any) => {
   }
 }
 
-export async function getUserAndRelatives(req: any, res: any) {
-  try {
-    const usersWithRelatives = await UserModel.find({})
-      .populate({
-        path: "familyMembers",
-        model: UserModel,
-      })
-      .exec();
+// export async function getUserAndRelatives(req: any, res: any) {
+//   try {
+//     const usersWithRelatives = await UserModel.find({})
+//       .populate({
+//         path: "familyMembers",
+//         model: UserModel,
+//       })
+//       .exec();
 
-    if (!usersWithRelatives || usersWithRelatives.length === 0) {
-      return res.status(404).json({ error: "No users and relatives found." });
-    }
+//     if (!usersWithRelatives || usersWithRelatives.length === 0) {
+//       return res.status(404).json({ error: "No users and relatives found." });
+//     }
 
-    return res.json({ users: usersWithRelatives }); // Return the user and relatives as JSON
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
-  }
-}
+//     return res.json({ users: usersWithRelatives }); // Return the user and relatives as JSON
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: error.message });
+//   }
+// }
 
 
-export async function getAllUsersAndRelatives(req: any, res: any) {
-  try {
-    // Fetch all users with relatives (you can customize this query as needed)
-    const users = await UserModel.find({})
-      .populate({
-        path: "familyMembers",
-        model: UserModel,
-      })
-      .exec();
+// export async function getAllUsersAndRelatives(req: any, res: any) {
+//   try {
+//     // Fetch all users with relatives (you can customize this query as needed)
+//     const users = await UserModel.find({})
+//       .populate({
+//         path: "familyMembers",
+//         model: UserModel,
+//       })
+//       .exec();
 
-    return res.json({ users }); // Return all users and relatives as JSON
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
-  }
-}
+//     return res.json({ users }); // Return all users and relatives as JSON
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: error.message });
+//   }
+// }
 
 
