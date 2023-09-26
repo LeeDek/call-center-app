@@ -1,0 +1,54 @@
+html {
+    background-color: rgb(7, 131, 169);
+
+body {
+    color: white;
+    text-align: center;
+    margin: 3rem;
+    font-family: "Quicksand", sans-serif;
+    font-size: 17px;
+
+    img {
+        margin: 1rem;
+        width: 250px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 200px;
+
+        input {
+            margin: .5rem;
+            height: 25px;
+            border: 2px solid rgb(39, 84, 100);
+        }
+
+        select {
+            height: 30px;
+            margin: .5rem;
+        }
+
+        label {
+            margin: .2rem;
+            font-size: 18px;
+        }
+    }
+    #deleteButton,
+    #updateButton {
+        display: none;
+}
+
+button {
+    height: 35px;
+    margin-top: 1rem;
+    border: 2px solid rgb(39, 84, 100);
+    background-color: rgb(92, 154, 177);
+
+    &:hover {
+        background-color: rgb(41, 93, 111);
+    }
+   }
+}
+}
