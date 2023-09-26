@@ -30,10 +30,11 @@ const CallSchema = new Schema({
   fullName: { type: String, required: true },
   phone: { type: String, required: true },
   date: { type: String, required: true },
+  dept: { type: String, required: false },
   status: { type: String, enum: Object.values(Status), default: Status.Open },
   user: { type: Schema.Types.ObjectId, ref: 'users', required: true }, // Reference to the user
 });
 
-export const serCalls = model('calls', CallSchema);
+export const calls = model('calls', CallSchema);
 
 export const relatives: Calls[] = [];

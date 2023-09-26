@@ -1,7 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-
-
 export class User {
   userName: string;
   email: string | null;
@@ -14,8 +12,6 @@ export class User {
     this.password = password;
     this.id = this.id
   }
-
-  
 }
 
 export const UserSchema = new Schema({

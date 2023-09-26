@@ -7,18 +7,18 @@ import mongoose from 'mongoose';
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cookieParser());
+// app.use(cookieParser());
 
 //static files
 app.use(express.static("public"));
 
 //body
-app.use(express.json());
-const {MONGO_URI} = process.env
+// app.use(express.json());
+// const {MONGO_URI} = process.env
 
-mongoose.connect(MONGO_URI).then (() => {
-  console.info("MongoDB connected")
-}).catch(err =>{console.error(err)})
+// mongoose.connect(MONGO_URI).then (() => {
+//   console.info("MongoDB connected")
+// }).catch(err =>{console.error(err)})
 
 //router to products
 
@@ -27,8 +27,8 @@ import userRouter from "./API/users/userRouter";
 //tells express to use userRouter on the intial route "/API/users"
 app.use("/API/users", userRouter)
 
-import relativesRoutes from "./API/calls/callsRoutes";
-app.use("/API/calls", relativesRoutes);
+import callsRoutes from "./API/calls/callsRoutes";
+app.use("/API/calls", callsRoutes);
 
 app.use((err, req, res, next) => { 
   console.error(err);

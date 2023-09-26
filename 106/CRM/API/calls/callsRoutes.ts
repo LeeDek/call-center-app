@@ -1,13 +1,13 @@
 import express from 'express';
-import { addCall, getCalls, deleteCall, updateCall, getUserCalls} from './callsCont';
-import { isAdmin } from './middlewareRelatives';
+import { addCall, getCalls, deleteCall, getUserCalls} from './callsCont';
 
-// const router = express.Router();
+const router = express.Router();
+
 router
-.post('/add-relative', addCall); // Use POST for adding relatives
-.get('/get-relatives', getCalls);
-.delete('/delete-call',isAdmin, deleteCall);
-.patch('/update-relative', updateCall);
-.get('/get-user-relatives', getUserCalls);
+.post('/add-call', addCall) // Use POST for adding relatives
+.get('/get-calls', getCalls)
+.delete('/delete-call', deleteCall)
+// .patch('/update-call', updateCall)
+.get('/get-user-calls', getUserCalls)
 
 export default router;
