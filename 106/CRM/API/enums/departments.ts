@@ -3,7 +3,7 @@ export enum Department {
   Education = "Education Department",
   Operations = "Operations Administration",
   Culture = "Culture and Sport Administration", 
-  HR = "Human Resources department", 
+  HR = "Human Resources Department", 
   Inquiries = "Department of Public Inquiries",
   Legal = "Legal Department", 
   Absorption = "Absorption Department",

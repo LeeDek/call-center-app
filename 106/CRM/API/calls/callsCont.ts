@@ -4,9 +4,6 @@ import { Department } from '../enums/departments'
 import { Status } from '../enums/status'
 
 
-
-
-
 export async function getCalls (req: any, res: any) {
     try {
         // Find all relatives and populate the 'user' field to get user details

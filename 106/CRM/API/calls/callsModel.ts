@@ -9,7 +9,7 @@ export class Call {
     public fullName: string,
     public phone: string,
     public date: string,
-    public dep: Departments,
+    public dept: Departments,
     public status: string 
   ) {
     this.id = Math.random().toString(36).substr(2, 9);
