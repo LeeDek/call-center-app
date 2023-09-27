@@ -2,8 +2,19 @@
 exports.__esModule = true;
 exports.CallSchema = void 0;
 var mongoose_1 = require("mongoose");
+var departments_1 = require("../../enums/departments");
 var status_1 = require("../../enums/status");
 var Schema = mongoose_1["default"].Schema;
+exports.CallSchema = new Schema({
+    operatorEmail: String,
+    name: String,
+    phoneNum: String,
+    callInfo: String,
+    department: departments_1.Department,
+    status: status_1.Status
+});
+var CallModel = mongoose_1.model("calls", exports.CallSchema);
+exports["default"] = CallModel;
 // enum DepartmentType {
 //   Department1 = "תכנון עירוני",
 //   Department2 = "איכות הסביבה",
@@ -21,13 +32,3 @@ var Schema = mongoose_1["default"].Schema;
 //   inProcess = "inProcess",
 //   received = "received",
 // }
-exports.CallSchema = new Schema({
-    operatorEmail: String,
-    name: String,
-    phoneNum: String,
-    callInfo: String,
-    department: DepartmentType,
-    status: status_1.Status
-});
-var CallModel = mongoose_1.model("calls", exports.CallSchema);
-exports["default"] = CallModel;

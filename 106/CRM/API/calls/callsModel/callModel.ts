@@ -3,6 +3,18 @@ import { Department } from "../../enums/departments";
 import { Status } from "../../enums/status";
 const { Schema } = mongoose;
 
+export const CallSchema = new Schema({
+  operatorEmail: String,
+  name: String,
+  phoneNum: String,
+  callInfo: String,
+  department: Department,
+  status: Status,
+});
+
+const CallModel = model("calls", CallSchema);
+export default CallModel;
+
 // enum DepartmentType {
 //   Department1 = "תכנון עירוני",
 //   Department2 = "איכות הסביבה",
@@ -21,15 +33,3 @@ const { Schema } = mongoose;
 //   inProcess = "inProcess",
 //   received = "received",
 // }
-
-export const CallSchema = new Schema({
-  operatorEmail: String,
-  name: String,
-  phoneNum: String,
-  callInfo: String,
-  department: DepartmentType,
-  status: Status,
-});
-
-const CallModel = model("calls", CallSchema);
-export default CallModel;
