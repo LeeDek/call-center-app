@@ -9,7 +9,7 @@ export class Call {
     public fullName: string,
     public phone: string,
     public date: string,
-    public dept: Departments,
+    public dept: Department,
     public status: string 
   ) {
     this.id = Math.random().toString(36).substr(2, 9);
@@ -20,7 +20,7 @@ export class Call {
   }
 }
 
-export const userCalls: UserCalls[] = [];
+export const userCalls: [] = [];
 
 const CallSchema = new Schema({
   fullName: { type: String, required: true },
@@ -33,4 +33,4 @@ const CallSchema = new Schema({
 
 export const calls = model('calls', CallSchema);
 
-export const relatives: Calls[] = [];
+export const _calls: Call[] = [];
