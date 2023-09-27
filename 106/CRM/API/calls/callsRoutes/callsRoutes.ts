@@ -1,5 +1,5 @@
 import express from 'express';
-import { addCall, getCalls, deleteCall, getUserCalls} from './callsCont';
+import { addCall, getCalls, deleteCall, getUserCalls} from '../callsCont';
 
 const router = express.Router();
 
