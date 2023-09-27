@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var express_1 = require("express");
-var callsCont_1 = require("./callsCont");
+var callsCont_1 = require("../callsCont");
 var router = express_1["default"].Router();
 router
     .post('/add-call', callsCont_1.addCall) // Use POST for adding relatives
