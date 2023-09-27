@@ -37,10 +37,11 @@ const CallSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "users", required: true }, // Reference to the user
 });
 
-const calls = model("calls", CallSchema);
-
+const CallModel = model("calls", CallSchema);
 export const _calls: Call[] = [];
-export default calls;
+
+
+export default CallModel;
 // -------------------------------------------------------------------------------------
 
 // enum DepartmentType {

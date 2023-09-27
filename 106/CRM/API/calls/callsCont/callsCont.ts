@@ -1,7 +1,8 @@
-import { users, UserModel } from "../users/userModel";
-import { calls, Call, userCalls } from "./callsModel";
-import { Department } from "../enums/departments";
-import { Status } from "../enums/status";
+import { users, UserModel } from "../../users/userModel";
+import { Call, userCalls  } from "../callsModel/callModel";
+import { Department } from "../../enums/departments";
+import { Status } from "../../enums/status";
+import CallModel from "../callsModel/callModel";
 
 export async function getCalls(req: any, res: any) {
   // try {
@@ -59,7 +60,7 @@ export async function addCall(req: any, res: any) {
         .send({ error: "User not found with the provided email" });
     }
 
-    const existingCall = await calls.findOne({
+    const existingCall = await CallModel.findOne({
       fullName,
       phone,
       date,
@@ -74,7 +75,7 @@ export async function addCall(req: any, res: any) {
         .send({ error: "Family member with the same details already exists" });
     }
 
-    const newCall = new calls({
+    const newCall = new CallModel({
       fullName,
       phone,
       date,

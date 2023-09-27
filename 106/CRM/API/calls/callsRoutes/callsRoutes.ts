@@ -5,7 +5,7 @@ import {
   deleteCall,
   getUserCalls,
 } from "../callsCont/callsCont";
-import { getDoneCalls } from "../callsCont/callsContFilters";
+import { getCallsByStatus } from "../callsCont/callsContFilters";
 
 const router = express.Router();
 
@@ -17,6 +17,6 @@ router
   .get("/get-user-calls", getUserCalls)
 
   //filter calls
-  .get("/get-done-calls", getDoneCalls);
+  .post("/get-calls-by-status", getCallsByStatus);
 
 export default router;

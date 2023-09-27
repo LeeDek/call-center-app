@@ -34,9 +34,9 @@ var CallSchema = new Schema({
     status: { type: String, "enum": Object.values(status_1.Status), "default": status_1.Status.Open },
     user: { type: Schema.Types.ObjectId, ref: "users", required: true }
 });
-var calls = mongoose_1.model("calls", CallSchema);
+var CallModel = mongoose_1.model("calls", CallSchema);
 exports._calls = [];
-exports["default"] = calls;
+exports["default"] = CallModel;
 // -------------------------------------------------------------------------------------
 // enum DepartmentType {
 //   Department1 = "תכנון עירוני",

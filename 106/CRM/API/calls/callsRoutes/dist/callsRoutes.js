@@ -10,5 +10,5 @@ router
     // .patch('/update-call', updateCall)
     .get("/get-user-calls", callsCont_1.getUserCalls)
     //filter calls
-    .get("/get-done-calls", callsContFilters_1.getDoneCalls);
+    .post("/get-calls-by-status", callsContFilters_1.getCallsByStatus);
 exports["default"] = router;

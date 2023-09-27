@@ -36,12 +36,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getDoneCalls = void 0;
-function getDoneCalls(req, res) {
+exports.getCallsByStatus = void 0;
+var callModel_1 = require("../callsModel/callModel");
+function getCallsByStatus(req, res) {
     return __awaiter(this, void 0, void 0, function () {
+        var currentStatus, callsDB, error_1;
         return __generator(this, function (_a) {
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    currentStatus = req.body.status;
+                    if (!currentStatus)
+                        return [2 /*return*/, res.status(404).json({ error: 'status is ${currentStatus}, invalided or not received' })];
+                    return [4 /*yield*/, callModel_1["default"].find({ status: currentStatus })];
+                case 1:
+                    callsDB = _a.sent();
+                    if (!callsDB)
+                        return [2 /*return*/, res.status(404).json({ error: '${currentStatus} calls are not found' })];
+                    res.send({ callsDB: callsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
         });
     });
 }
-exports.getDoneCalls = getDoneCalls;
+exports.getCallsByStatus = getCallsByStatus;
