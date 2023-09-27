@@ -19,7 +19,7 @@ const { MONGO_URI } = process.env;
 mongoose
   .connect(MONGO_URI)
   .then(() => {
-    console.info("MongoDB connected successfully...");
+    console.info("MongoDB connected successfully:)");
   })
   .catch((err) => {
     console.error(err);
