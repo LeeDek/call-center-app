@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getAllUsersAndRelatives = exports.getUserAndRelatives = exports.login = exports.registerUser = void 0;
+exports.login = exports.registerUser = void 0;
 var userModel_1 = require("./userModel");
 var bcrypt = require('bcrypt');
 var jwt = require('jwt-simple');
@@ -126,60 +126,35 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
-function getUserAndRelatives(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var usersWithRelatives, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, userModel_1.UserModel.find({})
-                            .populate({
-                            path: "familyMembers",
-                            model: userModel_1.UserModel
-                        })
-                            .exec()];
-                case 1:
-                    usersWithRelatives = _a.sent();
-                    if (!usersWithRelatives || usersWithRelatives.length === 0) {
-                        return [2 /*return*/, res.status(404).json({ error: "No users and relatives found." })];
-                    }
-                    return [2 /*return*/, res.json({ users: usersWithRelatives })]; // Return the user and relatives as JSON
-                case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    res.status(500).json({ error: error_3.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-exports.getUserAndRelatives = getUserAndRelatives;
-function getAllUsersAndRelatives(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var users_1, error_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, userModel_1.UserModel.find({})
-                            .populate({
-                            path: "familyMembers",
-                            model: userModel_1.UserModel
-                        })
-                            .exec()];
-                case 1:
-                    users_1 = _a.sent();
-                    return [2 /*return*/, res.json({ users: users_1 })]; // Return all users and relatives as JSON
-                case 2:
-                    error_4 = _a.sent();
-                    console.error(error_4);
-                    res.status(500).json({ error: error_4.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-exports.getAllUsersAndRelatives = getAllUsersAndRelatives;
+// export async function getUserAndRelatives(req: any, res: any) {
+//   try {
+//     const usersWithRelatives = await UserModel.find({})
+//       .populate({
+//         path: "familyMembers",
+//         model: UserModel,
+//       })
+//       .exec();
+//     if (!usersWithRelatives || usersWithRelatives.length === 0) {
+//       return res.status(404).json({ error: "No users and relatives found." });
+//     }
+//     return res.json({ users: usersWithRelatives }); // Return the user and relatives as JSON
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: error.message });
+//   }
+// }
+// export async function getAllUsersAndRelatives(req: any, res: any) {
+//   try {
+//     // Fetch all users with relatives (you can customize this query as needed)
+//     const users = await UserModel.find({})
+//       .populate({
+//         path: "familyMembers",
+//         model: UserModel,
+//       })
+//       .exec();
+//     return res.json({ users }); // Return all users and relatives as JSON
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: error.message });
+//   }
+// }

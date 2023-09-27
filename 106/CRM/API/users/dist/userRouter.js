@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 var express_1 = require("express");
-var userCont_1 = require("./userCont");
-var middlewareUsers_1 = require("./middlewareUsers");
+var login_1 = require("./userCont/login");
+var addUser_1 = require("./userCont/addUser");
 var router = express_1["default"].Router();
 router
-    .post("/register", userCont_1.registerUser)
-    .post("/login", userCont_1.login)
-    .get("/userWithRelatives", middlewareUsers_1.isAdmin, userCont_1.getUserAndRelatives) // Fetch user data with relatives
-    .get("/allUsersWithRelatives", middlewareUsers_1.isAdmin, userCont_1.getAllUsersAndRelatives); // Fetch all users with relatives
+    .post("/login", login_1.login)
+    .post("/add-user", addUser_1.addUser);
+// .get("/userWithCalls", getUserAndCalls) // Fetch user data with calls
+// .get("/allUsersWithCalls", isAdmin, getAllUsersAndCalls); // Fetch all users with calls
 exports["default"] = router;

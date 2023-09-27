@@ -3,12 +3,11 @@ async function handleRegister(ev: any) {
     ev.preventDefault(); // stop form from submitting
     const user = {
       userName: ev.target.userName.value,
-      gender: ev.target.gender.value,
       email: ev.target.email.value,
-      password: ev.target.password.value,
+      role: ev.target.role.value,
     };
 
-    const response = await fetch("/API/users/register", {
+    const response = await fetch("/API/users/userCont/add-user", {
       // send data to server
       method: "POST",
       headers: {
@@ -16,13 +15,8 @@ async function handleRegister(ev: any) {
       },
       body: JSON.stringify(user),
     });
-    const { error, userDB } = await response.json(); // get data from server
-    console.log(userDB)
-    if (error) {
-      throw new Error(error);
-    }
-    //if everthink is OK, redirect to login page
-    window.location.href = "/login.html";
+    const { error } = await response.json(); // get data from server
+    if (error) throw new Error(error);
   } catch (error) {
     console.error(error);
   }

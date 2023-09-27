@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, email, isAdmin, error_1;
+        var user, response, _a, error, role, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -49,7 +49,7 @@ function handleLogin(ev) {
                     if (!user.email || !user.password) {
                         throw new Error("Please complete all fields");
                     }
-                    return [4 /*yield*/, fetch("/API/users/login", {
+                    return [4 /*yield*/, fetch("/API/users/userCont/login", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -60,18 +60,22 @@ function handleLogin(ev) {
                     response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, email = _a.email, isAdmin = _a.isAdmin;
+                    _a = _b.sent(), error = _a.error, role = _a.role;
                     console.log(error);
-                    if (error) {
+                    if (!role)
+                        throw new Error("cannot detect user role");
+                    if (error)
                         throw new Error(error);
-                    }
-                    if (isAdmin) {
-                        // Redirect admin user to admin.html
-                        window.location.href = "/admin.html?email=" + email;
-                    }
-                    else {
-                        // Redirect regular user to main.html
-                        window.location.href = "/main.html?email=" + email;
+                    switch (role) {
+                        case 'admin':
+                            window.location.href = "/admin.html";
+                            break;
+                        case 'departmentMng':
+                            window.location.href = "/manager.html";
+                            break;
+                        case 'user':
+                            window.location.href = "/main.html";
+                            break;
                     }
                     return [3 /*break*/, 4];
                 case 3:
