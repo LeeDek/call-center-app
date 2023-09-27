@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,41 +35,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleRegister(ev) {
+exports.__esModule = true;
+exports.login = void 0;
+var userModel_1 = require("../userModel");
+var bcrypt_1 = require("bcrypt");
+var jwt_simple_1 = require("jwt-simple");
+var SECRET = process.env.SECRET;
+var secret = SECRET;
+function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, error, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, email, password, userDB, hash, match, cookie, token, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
-                    user = {
-                        userName: ev.target.userName.value,
-                        email: ev.target.email.value,
-                        role: ev.target.role.value
-                    };
-                    return [4 /*yield*/, fetch("/API/users/userCont/add-user", {
-                            // send data to server
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(user)
-                        })];
+                    _b.trys.push([0, 3, , 4]);
+                    _a = req.body, email = _a.email, password = _a.password;
+                    if (!email || !password) {
+                        throw new Error("Please complete all fields");
+                    }
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
                 case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
+                    userDB = _b.sent();
+                    if (!userDB)
+                        throw new Error("User not found");
+                    hash = userDB.password;
+                    if (!hash)
+                        throw new Error("some of the detail are incorrect");
+                    return [4 /*yield*/, bcrypt_1["default"].compare(password, hash)];
                 case 2:
-                    error = (_a.sent()).error;
-                    if (error)
-                        throw new Error(error);
+                    match = _b.sent();
+                    if (!match)
+                        throw new Error("some of the detail are incorrect");
+                    cookie = {
+                        uid: userDB._id
+                    };
+                    token = jwt_simple_1["default"].encode(cookie, secret);
+                    res.cookie("user", token, { httpOnly: true, maxAge: 1000 * 60 * 15 });
+                    res.send({ ok: true, role: userDB.role });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     console.error(error_1);
+                    res.status(401).send({ error: error_1.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
+exports.login = login;

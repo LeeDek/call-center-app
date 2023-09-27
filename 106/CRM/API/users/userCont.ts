@@ -1,7 +1,7 @@
 import { User, UserModel, users } from "./userModel";
 const bcrypt = require('bcrypt')
 const jwt = require('jwt-simple');
-const {SECRET} = process.env
+const { SECRET } = process.env
 const secret = SECRET
 
 const saltRounds = 10
@@ -66,21 +66,21 @@ export const login = async (req: any, res: any) => {
     // if (!match) throw new Error("some of the detail are incorrect")
 
     // Determine if the user is an admin
-    const {isAdmin} = userDB;
+    const { isAdmin } = userDB;
 
     const cookie = {
       uid: userDB._id,
     }
 
-    
+
     console.log(`User found: ${userDB.email}`);
     console.log(`isAdmin: ${isAdmin}`);
 
-     // encode
-     const token = jwt.encode(cookie, secret);
-     console.log(token)
-    
-    res.cookie("user", token, {  httpOnly: true, maxAge: 900000 })
+    // encode
+    const token = jwt.encode(cookie, secret);
+    console.log(token)
+
+    res.cookie("user", token, { httpOnly: true, maxAge: 900000 })
     res.send({ ok: true, email: userDB.email, isAdmin });
 
   } catch (error) {
