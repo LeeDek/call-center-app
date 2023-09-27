@@ -1,5 +1,5 @@
 export enum Status {
-    Open = "Open",
-    InProcess = "InProcess",
-    Closed = "Closed"
+  Open = "Open",
+  InProcess = "InProcess",
+  Closed = "Closed",
 }

@@ -1,4 +1,6 @@
 import { Schema, model } from 'mongoose';
+import { Role } from '../enums/role';
+
 
 export class User {
   userName: string;
@@ -18,8 +20,8 @@ export const UserSchema = new Schema({
   userName: { type: String, required: false },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  isAdmin: {type: Boolean,
-    default: false}
+  role: { type: String, enum: Object.values(Role), default: Role.User },
+
 });
 
 export const UserModel = model("users", UserSchema)
