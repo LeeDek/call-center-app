@@ -36,120 +36,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleDeleteRelatives = exports.getUserRelatives = void 0;
-function renderRelatives(relativesData, targetElement) {
-    targetElement.innerHTML = ''; // Clear the target element
-    if (!relativesData || relativesData.length === 0) {
-        targetElement.innerHTML = '<p>No relatives found.</p>';
-        return;
-    }
-    var relativesList = document.createElement('ul');
-    relativesList.style.listStyle = 'none';
-    relativesData.forEach(function (relative) {
-        var relativeItem = document.createElement('li');
-        var birthDate = new Date(relative.birthDate);
-        var formattedBirthDate = birthDate.getDate() + "-" + (birthDate.getMonth() + 1) + "-" + birthDate.getFullYear();
-        relativeItem.innerHTML = "\n        <span style=\"font-weight: bold\">" + relative.fullName + "</span> is my:\n        <span style=\"font-weight: bold\">" + relative.relation + "</span> - born in:\n        <span style=\"font-weight: bold\">" + formattedBirthDate + "</span> - lives in:\n        <span style=\"font-weight: bold\">" + relative.country + "</span>\n        <button onclick=\"handleUpdateRelatives('" + relative.id + "')\">Update</button>\n        <button onclick=\"handleDeleteRelatives('" + relative.id + "')\">Delete</button>\n      ";
-        relativesList.appendChild(relativeItem);
-    });
-    targetElement.appendChild(relativesList);
+exports.handleDeleteCalls = exports.getUserCalls = void 0;
+function renderCalls(callsData, targetElement) {
+    // targetElement.innerHTML = ''; // Clear the target element
+    // if (!relativesData || relativesData.length === 0) {
+    //     targetElement.innerHTML = '<p>No relatives found.</p>';
+    //     return;
+    // }
+    // const relativesList = document.createElement('ul');
+    // relativesList.style.listStyle = 'none';
+    // relativesData.forEach(relative => {
+    //     const relativeItem = document.createElement('li');
+    //     const birthDate = new Date(relative.birthDate);
+    //     const formattedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
+    //     relativeItem.innerHTML = `
+    //     <span style="font-weight: bold">${relative.fullName}</span> is my:
+    //     <span style="font-weight: bold">${relative.relation}</span> - born in:
+    //     <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
+    //     <span style="font-weight: bold">${relative.country}</span>
+    //     <button onclick="handleUpdateRelatives('${relative.id}')">Update</button>
+    //     <button onclick="handleDeleteRelatives('${relative.id}')">Delete</button>
+    //   `;
+    //     relativesList.appendChild(relativeItem);
+    // });
+    // targetElement.appendChild(relativesList);
 }
 // A function to get the user's relatives from the server by email
-function getUserRelatives(email) {
+function getUserCalls(email) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_1;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("/API/relatives/get-user-relatives?email=" + email)];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    data = _a.sent();
-                    console.log(data);
-                    // Assuming you have a rendering function for relatives, e.g., renderRelatives
-                    renderRelatives(data.relatives, document.querySelector("#relatives"));
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
+            return [2 /*return*/];
         });
     });
 }
-exports.getUserRelatives = getUserRelatives;
-function handleDeleteRelatives(relativeId) {
+exports.getUserCalls = getUserCalls;
+function handleDeleteCalls(relativeId) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, result, errorData, error_2;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 7, , 8]);
-                    console.log(relativeId);
-                    return [4 /*yield*/, fetch("/API/relatives/delete-relative/" + relativeId, {
-                            method: 'DELETE',
-                            headers: { 'Content-Type': 'application/json' }
-                        })];
-                case 1:
-                    response = _a.sent();
-                    if (!(response.status === 200)) return [3 /*break*/, 3];
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    result = _a.sent();
-                    if (result && result.relativeDB) {
-                        console.log("Relative deleted successfully.");
-                        // Update the UI or take other actions here.
-                    }
-                    else {
-                        console.error("Server response is missing 'relativeDB' property.");
-                    }
-                    return [3 /*break*/, 6];
-                case 3:
-                    if (!(response.status === 404)) return [3 /*break*/, 4];
-                    console.error("Relative not found");
-                    return [3 /*break*/, 6];
-                case 4: return [4 /*yield*/, response.json()];
-                case 5:
-                    errorData = _a.sent();
-                    console.error("Error:", errorData.error); // Display the specific error message from the server
-                    _a.label = 6;
-                case 6: return [3 /*break*/, 8];
-                case 7:
-                    error_2 = _a.sent();
-                    console.error("An unexpected error occurred:", error_2);
-                    return [3 /*break*/, 8];
-                case 8: return [2 /*return*/];
-            }
+            return [2 /*return*/];
         });
     });
 }
-exports.handleDeleteRelatives = handleDeleteRelatives;
-function handleGetUserAndRelatives() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("API/users/userWithRelatives")];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    data = _a.sent();
-                    console.log(data);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
-handleGetUserAndRelatives();
+exports.handleDeleteCalls = handleDeleteCalls;
