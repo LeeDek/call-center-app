@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.queryByDynamicParams = exports.getCallsByDept = exports.getCallsByStatus = void 0;
+exports.queryByDynamicDeptAndStatus = exports.getCallsByDept = exports.getCallsByStatus = void 0;
 var callModel_1 = require("../callsModel/callModel");
 function getCallsByStatus(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -58,7 +58,7 @@ function getCallsByStatus(req, res) {
                     if (!callsDB)
                         return [2 /*return*/, res
                                 .status(404)
-                                .json({ error: "${currentStatus} calls are not found" })];
+                                .json({ error: currentStatus + " calls are not found" })];
                     res.send({ callsDB: callsDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -82,7 +82,7 @@ function getCallsByDept(req, res) {
                     if (!currentDept)
                         return [2 /*return*/, res
                                 .status(404)
-                                .json({ error: "status is ${currentDept}, invalided or not received" })];
+                                .json({ error: "status is " + currentDept + ", invalided or not received" })];
                     return [4 /*yield*/, callModel_1["default"].find({ status: currentDept })];
                 case 1:
                     callsDB = _a.sent();
@@ -102,7 +102,7 @@ function getCallsByDept(req, res) {
     });
 }
 exports.getCallsByDept = getCallsByDept;
-function queryByDynamicParams(req, res) {
+function queryByDynamicDeptAndStatus(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, dept, status, query, callsDB, error_3;
         return __generator(this, function (_b) {
@@ -137,4 +137,4 @@ function queryByDynamicParams(req, res) {
         });
     });
 }
-exports.queryByDynamicParams = queryByDynamicParams;
+exports.queryByDynamicDeptAndStatus = queryByDynamicDeptAndStatus;

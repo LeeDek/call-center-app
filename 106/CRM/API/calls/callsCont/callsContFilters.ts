@@ -17,7 +17,7 @@ export async function getCallsByStatus(req, res) {
     if (!callsDB)
       return res
         .status(404)
-        .json({ error: "${currentStatus} calls are not found" });
+        .json({ error: `${currentStatus} calls are not found` });
     res.send({ callsDB });
   } catch (error) {
     console.error(error);
@@ -30,7 +30,7 @@ export async function getCallsByDept(req, res) {
     if (!currentDept)
       return res
         .status(404)
-        .json({ error: "status is ${currentDept}, invalided or not received" });
+        .json({ error: `status is ${currentDept}, invalided or not received` });
     const callsDB = await CallModel.find({ status: currentDept });
     if (!callsDB)
       return res
@@ -42,7 +42,7 @@ export async function getCallsByDept(req, res) {
   }
 }
 
-export async function queryByDynamicParams(req, res) {
+export async function queryByDynamicDeptAndStatus(req, res) {
   try {
     const { dept, status } = req.body;
 
@@ -57,7 +57,7 @@ export async function queryByDynamicParams(req, res) {
 
     console.log(`Search operation by dept:${dept} && ${status} ...`);
     const callsDB = await CallModel.find(query);
-    
+
     if (!callsDB)
       return res
         .status(404)
