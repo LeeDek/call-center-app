@@ -20,13 +20,15 @@ var Status;
 (function (Status) {
     Status["done"] = "done";
     Status["inProcess"] = "inProcess";
+    Status["received"] = "received";
 })(Status || (Status = {}));
 exports.CallSchema = new Schema({
+    operatorEmail: String,
     name: String,
     phoneNum: String,
     callInfo: String,
     department: DepartmentType,
-    status: 
+    status: Status
 });
 var CallModel = mongoose_1.model("calls", exports.CallSchema);
 exports["default"] = CallModel;
