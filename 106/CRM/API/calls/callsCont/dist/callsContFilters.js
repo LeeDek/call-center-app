@@ -47,12 +47,18 @@ function getCallsByStatus(req, res) {
                     _a.trys.push([0, 2, , 3]);
                     currentStatus = req.body.status;
                     if (!currentStatus)
-                        return [2 /*return*/, res.status(404).json({ error: 'status is ${currentStatus}, invalided or not received' })];
+                        return [2 /*return*/, res
+                                .status(404)
+                                .json({
+                                error: "status is ${currentStatus}, invalided or not received"
+                            })];
                     return [4 /*yield*/, callModel_1["default"].find({ status: currentStatus })];
                 case 1:
                     callsDB = _a.sent();
                     if (!callsDB)
-                        return [2 /*return*/, res.status(404).json({ error: '${currentStatus} calls are not found' })];
+                        return [2 /*return*/, res
+                                .status(404)
+                                .json({ error: "${currentStatus} calls are not found" })];
                     res.send({ callsDB: callsDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -74,12 +80,16 @@ function getCallsByDept(req, res) {
                     _a.trys.push([0, 2, , 3]);
                     currentDept = req.body.dept;
                     if (!currentDept)
-                        return [2 /*return*/, res.status(404).json({ error: 'status is ${currentDept}, invalided or not received' })];
+                        return [2 /*return*/, res
+                                .status(404)
+                                .json({ error: "status is ${currentDept}, invalided or not received" })];
                     return [4 /*yield*/, callModel_1["default"].find({ status: currentDept })];
                 case 1:
                     callsDB = _a.sent();
                     if (!callsDB)
-                        return [2 /*return*/, res.status(404).json({ error: '${currentDept} calls are not found' })];
+                        return [2 /*return*/, res
+                                .status(404)
+                                .json({ error: "${currentDept} calls are not found" })];
                     res.send({ callsDB: callsDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -102,23 +112,25 @@ function queryByDynamicParams(req, res) {
                     _a = req.body, dept = _a.dept, status = _a.status;
                     query = {};
                     if (dept) {
-                        query['dept'] = dept;
+                        query["dept"] = dept;
                     }
                     if (status) {
-                        query['status'] = status;
+                        query["status"] = status;
                     }
                     console.log("Search operation by dept:" + dept + " && " + status + " ...");
                     return [4 /*yield*/, callModel_1["default"].find(query)];
                 case 1:
                     callsDB = _b.sent();
                     if (!callsDB)
-                        return [2 /*return*/, res.status(404).json({ error: dept + " and " + status + " calls are not found" })];
+                        return [2 /*return*/, res
+                                .status(404)
+                                .json({ error: dept + " and " + status + " calls are not found" })];
                     res.send({ callsDB: callsDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _b.sent();
                     console.error(error_3);
-                    res.status(500).json({ error: 'server error' });
+                    res.status(500).json({ error: "server error" });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
