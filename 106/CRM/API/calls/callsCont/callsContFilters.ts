@@ -18,3 +18,43 @@ export async function getCallsByStatus(req, res) {
     console.error(error);
   }
 }
+
+export async function getCallsByDept(req, res) {
+  try {
+    const {dept:currentDept} = req.body
+    if(!currentDept) 
+        return res.status(404).json({ error: 'status is ${currentDept}, invalided or not received' });
+    const callsDB = await CallModel.find({ status: currentDept });
+    if (!callsDB)
+      return res.status(404).json({ error: '${currentDept} calls are not found' });
+    res.send({callsDB})
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function queryByDynamicParams(req: Request, res: Response) {
+    try {
+      const {dept, status} = req.body; 
+  
+      const query = {};
+  
+      if (dept) {
+        query['dept'] = dept;
+      }
+      if (status) {
+        query['status'] = status;
+      }
+
+      console.log(`Search operation by dept:${dept} && ${status} ...`);
+      
+      const callsDB = await CallModel.find(query);
+  
+      if(!callsDB) 
+        return res.status(404).json({ error: `${dept} and ${status} calls are not found` });
+      res.send({callsDB});
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'server error' });
+    }
+  }

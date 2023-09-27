@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getCallsByStatus = void 0;
+exports.queryByDynamicParams = exports.getCallsByDept = exports.getCallsByStatus = void 0;
 var callModel_1 = require("../callsModel/callModel");
 function getCallsByStatus(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -65,3 +65,64 @@ function getCallsByStatus(req, res) {
     });
 }
 exports.getCallsByStatus = getCallsByStatus;
+function getCallsByDept(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var currentDept, callsDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    currentDept = req.body.dept;
+                    if (!currentDept)
+                        return [2 /*return*/, res.status(404).json({ error: 'status is ${currentDept}, invalided or not received' })];
+                    return [4 /*yield*/, callModel_1["default"].find({ status: currentDept })];
+                case 1:
+                    callsDB = _a.sent();
+                    if (!callsDB)
+                        return [2 /*return*/, res.status(404).json({ error: '${currentDept} calls are not found' })];
+                    res.send({ callsDB: callsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getCallsByDept = getCallsByDept;
+function queryByDynamicParams(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, dept, status, query, callsDB, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, dept = _a.dept, status = _a.status;
+                    query = {};
+                    if (dept) {
+                        query['dept'] = dept;
+                    }
+                    if (status) {
+                        query['status'] = status;
+                    }
+                    console.log("Search operation by dept:" + dept + " && " + status + " ...");
+                    return [4 /*yield*/, callModel_1["default"].find(query)];
+                case 1:
+                    callsDB = _b.sent();
+                    if (!callsDB)
+                        return [2 /*return*/, res.status(404).json({ error: dept + " and " + status + " calls are not found" })];
+                    res.send({ callsDB: callsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _b.sent();
+                    console.error(error_3);
+                    res.status(500).json({ error: 'server error' });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.queryByDynamicParams = queryByDynamicParams;
