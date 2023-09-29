@@ -37,8 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getUserCalls = exports.deleteCall = exports.addCall = exports.getCalls = void 0;
-var userModel_1 = require("../users/userModel");
-var callsModel_1 = require("./callsModel");
+var userModel_1 = require("../../users/userModel");
+var callModel_1 = require("../callsModel/callModel");
 function getCalls(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -66,7 +66,7 @@ function addCall(req, res) {
                                 .status(404)
                                 .send({ error: "User not found with the provided email" })];
                     }
-                    return [4 /*yield*/, callsModel_1.calls.findOne({
+                    return [4 /*yield*/, callModel_1["default"].findOne({
                             fullName: fullName,
                             phone: phone,
                             date: date,
@@ -81,7 +81,7 @@ function addCall(req, res) {
                                 .status(400)
                                 .send({ error: "Family member with the same details already exists" })];
                     }
-                    newCall = new callsModel_1.calls({
+                    newCall = new callModel_1["default"]({
                         fullName: fullName,
                         phone: phone,
                         date: date,
