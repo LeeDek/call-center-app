@@ -1,0 +1,45 @@
+:root {
+  font-size: 16px;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  background-color: #0783a9;
+}
+
+body {
+  color: #0c6a86;
+  background-color: #3c9ebc;
+  margin: 0;
+  padding: 0;
+}
+body ::-webkit-scrollbar {
+  width: 0.25rem;
+}
+body ::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+body ::-webkit-scrollbar-thumb {
+  background: #0c6a86;
+}
+body main {
+  margin-left: 4rem;
+  padding: 1rem;
+}
+body .navbar {
+  width: 4rem;
+  height: 100vh;
+  position: fixed;
+  background-color: #3d3d47;
+  justify-content: center;
+  align-items: center;
+}
+body .navbar .material-symbols-outlined {
+  font-size: 35px;
+  margin-left: -1.7rem;
+}
+body .navbar ul {
+  list-style: none;
+  /* This removes the bullets */
+}
+body .navbar li {
+  width: 500px;
+}
