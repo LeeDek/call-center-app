@@ -19,7 +19,7 @@ const { MONGO_URI } = process.env;
 mongoose
   .connect(MONGO_URI)
   .then(() => {
-    console.info("MongoDB connected successfully...");
+    console.info("MongoDB connected successfully:)");
   })
   .catch((err) => {
     console.error(err);
@@ -30,8 +30,8 @@ mongoose
 import userRouter from "./API/users/userRouter";
 app.use("/API/users", userRouter);
 
-import callsRoutes from "./API/calls/callsRoutes/callsRotes";
-app.use("/API/calls", callsRoutes);
+// import callsRoutes from "./API/calls/callsRoutes/callsRotes";
+// app.use("/API/calls", callsRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);

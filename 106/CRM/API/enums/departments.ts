@@ -1,12 +1,12 @@
 export enum Department {
-  Finance = "Finance Administration",
-  Education = "Education Department",
-  Operations = "Operations Administration",
-  Culture = "Culture and Sport Administration", 
-  HR = "Human Resources Department", 
-  Inquiries = "Department of Public Inquiries",
-  Legal = "Legal Department", 
-  Absorption = "Absorption Department",
-  Police = "Municipal Police Unit",
-  Comptroller = "Municipal Comptroller"
+  Finance = "Finance Administration",// מחלקת כספים
+  Education = "Education Department",// מחלקת חינוך
+  Operations = "Operations Administration", // אגף שפ"ע (איכות חיים וסביבה)
+  Culture = "Culture and Sport Administration", // מחלקת תרבות וספורט
+  HR = "Human Resources Department", // מחלקת תמשאבי אנוש
+  Inquiries = "Department of Public Inquiries", // מחלקת פניות הציבור
+  Legal = "Legal Department", // מחלקה משפטית
+  Absorption = "Absorption Department", // אגף קליטה 
+  Police = "Municipal Police Unit", // שיטור עירוני
+  Comptroller = "Municipal Comptroller"// מוקד שליטה עירוני 106
   }

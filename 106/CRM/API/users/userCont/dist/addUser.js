@@ -36,45 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleDeleteCalls = exports.getUserCalls = void 0;
-function renderCalls(callsData, targetElement) {
-    // targetElement.innerHTML = ''; // Clear the target element
-    // if (!relativesData || relativesData.length === 0) {
-    //     targetElement.innerHTML = '<p>No relatives found.</p>';
-    //     return;
-    // }
-    // const relativesList = document.createElement('ul');
-    // relativesList.style.listStyle = 'none';
-    // relativesData.forEach(relative => {
-    //     const relativeItem = document.createElement('li');
-    //     const birthDate = new Date(relative.birthDate);
-    //     const formattedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
-    //     relativeItem.innerHTML = `
-    //     <span style="font-weight: bold">${relative.fullName}</span> is my:
-    //     <span style="font-weight: bold">${relative.relation}</span> - born in:
-    //     <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
-    //     <span style="font-weight: bold">${relative.country}</span>
-    //     <button onclick="handleUpdateRelatives('${relative.id}')">Update</button>
-    //     <button onclick="handleDeleteRelatives('${relative.id}')">Delete</button>
-    //   `;
-    //     relativesList.appendChild(relativeItem);
-    // });
-    // targetElement.appendChild(relativesList);
-}
-// A function to get the user's relatives from the server by email
-function getUserCalls(email) {
+exports.addUser = void 0;
+var userModel_1 = require("../userModel");
+function addUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/];
+        var _a, userName, email, role, existingUser, _user, userDB, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    _a = req.body, userName = _a.userName, email = _a.email, role = _a.role;
+                    if (!userName || !email || !role)
+                        throw new Error("Some details are missing");
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email }).exec()];
+                case 1:
+                    existingUser = _b.sent();
+                    if (existingUser)
+                        throw new Error("Email address already exists");
+                    _user = new userModel_1.UserModel({ userName: userName, email: email, role: role });
+                    return [4 /*yield*/, _user.save()];
+                case 2:
+                    userDB = _b.sent();
+                    res.send({ ok: true });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _b.sent();
+                    console.error(error_1);
+                    res.status(401).send({ error: error_1.message });
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
         });
     });
 }
-exports.getUserCalls = getUserCalls;
-function handleDeleteCalls(relativeId) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/];
-        });
-    });
-}
-exports.handleDeleteCalls = handleDeleteCalls;
+exports.addUser = addUser;

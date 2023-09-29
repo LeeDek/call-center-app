@@ -36,45 +36,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleDeleteCalls = exports.getUserCalls = void 0;
-function renderCalls(callsData, targetElement) {
-    // targetElement.innerHTML = ''; // Clear the target element
-    // if (!relativesData || relativesData.length === 0) {
-    //     targetElement.innerHTML = '<p>No relatives found.</p>';
-    //     return;
-    // }
-    // const relativesList = document.createElement('ul');
-    // relativesList.style.listStyle = 'none';
-    // relativesData.forEach(relative => {
-    //     const relativeItem = document.createElement('li');
-    //     const birthDate = new Date(relative.birthDate);
-    //     const formattedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
-    //     relativeItem.innerHTML = `
-    //     <span style="font-weight: bold">${relative.fullName}</span> is my:
-    //     <span style="font-weight: bold">${relative.relation}</span> - born in:
-    //     <span style="font-weight: bold">${formattedBirthDate}</span> - lives in:
-    //     <span style="font-weight: bold">${relative.country}</span>
-    //     <button onclick="handleUpdateRelatives('${relative.id}')">Update</button>
-    //     <button onclick="handleDeleteRelatives('${relative.id}')">Delete</button>
-    //   `;
-    //     relativesList.appendChild(relativeItem);
-    // });
-    // targetElement.appendChild(relativesList);
-}
-// A function to get the user's relatives from the server by email
-function getUserCalls(email) {
+exports.login = void 0;
+var userModel_1 = require("../userModel");
+var bcrypt_1 = require("bcrypt");
+var jwt_simple_1 = require("jwt-simple");
+var SECRET = process.env.SECRET;
+var secret = SECRET;
+function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/];
+        var _a, email, password, userDB, hash, match, cookie, token, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    _a = req.body, email = _a.email, password = _a.password;
+                    if (!email || !password) {
+                        throw new Error("Please complete all fields");
+                    }
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
+                case 1:
+                    userDB = _b.sent();
+                    if (!userDB)
+                        throw new Error("User not found");
+                    hash = userDB.password;
+                    if (!hash)
+                        throw new Error("some of the detail are incorrect");
+                    return [4 /*yield*/, bcrypt_1["default"].compare(password, hash)];
+                case 2:
+                    match = _b.sent();
+                    if (!match)
+                        throw new Error("some of the detail are incorrect");
+                    cookie = {
+                        uid: userDB._id
+                    };
+                    token = jwt_simple_1["default"].encode(cookie, secret);
+                    res.cookie("user", token, { httpOnly: true, maxAge: 1000 * 60 * 15 });
+                    res.send({ ok: true, role: userDB.role });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _b.sent();
+                    console.error(error_1);
+                    res.status(401).send({ error: error_1.message });
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
         });
     });
 }
-exports.getUserCalls = getUserCalls;
-function handleDeleteCalls(relativeId) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/];
-        });
-    });
-}
-exports.handleDeleteCalls = handleDeleteCalls;
+exports.login = login;
