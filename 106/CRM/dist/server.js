@@ -19,7 +19,7 @@ const { MONGO_URI } = process.env;
 mongoose_1.default
     .connect(MONGO_URI)
     .then(() => {
-    console.info("MongoDB connected successfully...");
+    console.info("MongoDB connected successfully:)");
 })
     .catch((err) => {
     console.error(err);
@@ -27,8 +27,8 @@ mongoose_1.default
 //router to products
 const userRouter_1 = __importDefault(require("./API/users/userRouter"));
 app.use("/API/users", userRouter_1.default);
-// import callsRoutes from "./API/calls/callsRoutes/callsRotes";
-// app.use("/API/calls", callsRoutes);
+const callsRoutes_1 = __importDefault(require("./API/calls/callsRoutes/callsRoutes"));
+app.use("/API/calls", callsRoutes_1.default);
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).json({ error: "Something went wrong." });
