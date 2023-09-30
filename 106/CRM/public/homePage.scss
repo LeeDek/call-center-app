@@ -41,8 +41,7 @@ body {
       width: 100%;
       text-align: center;
       margin-bottom: 1.5rem;
-      margin-top: .5rem;
-
+      margin-top: 1rem;
 
       p {
         display: none;
@@ -79,7 +78,7 @@ body {
         gap: 5rem;
 
         li {
-          padding-top: 1rem;
+          // padding-top: 1rem;
           margin-bottom: 0.1rem;
 
           &:hover {
@@ -115,10 +114,6 @@ body {
         justify-content: center;
         align-items: center;
         gap: 2.5rem;
-
-        li {
-          padding-top: 1rem;
-        }
 
         p {
           display: none;

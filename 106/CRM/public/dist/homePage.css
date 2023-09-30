@@ -34,7 +34,7 @@ body .navbar .material-symbols-outlined {
   width: 100%;
   text-align: center;
   margin-bottom: 1.5rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 body .navbar li p,
 body .navbar .material-symbols-outlined p {
@@ -69,7 +69,6 @@ body .navbar .material-symbols-outlined:hover p {
     gap: 5rem;
   }
   body .navbar ul li {
-    padding-top: 1rem;
     margin-bottom: 0.1rem;
   }
   body .navbar ul li:hover p {
@@ -98,9 +97,6 @@ body .navbar .material-symbols-outlined:hover p {
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
-  }
-  body .navbar ul li {
-    padding-top: 1rem;
   }
   body .navbar ul p {
     display: none;
