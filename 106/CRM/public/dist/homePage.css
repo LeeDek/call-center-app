@@ -1,0 +1,46 @@
+html {
+  background-color: #0783a9;
+}
+html body {
+  color: white;
+  text-align: center;
+  margin: 3rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 17px;
+}
+html body img {
+  margin: 1rem;
+  width: 250px;
+}
+html body form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 200px;
+}
+html body form input {
+  margin: 0.5rem;
+  height: 25px;
+  border: 2px solid #275464;
+}
+html body form select {
+  height: 30px;
+  margin: 0.5rem;
+}
+html body form label {
+  margin: 0.2rem;
+  font-size: 18px;
+}
+html body #deleteButton,
+html body #updateButton {
+  display: none;
+}
+html body button {
+  height: 35px;
+  margin-top: 1rem;
+  border: 2px solid #275464;
+  background-color: #5c9ab1;
+}
+html body button:hover {
+  background-color: #295d6f;
+}
