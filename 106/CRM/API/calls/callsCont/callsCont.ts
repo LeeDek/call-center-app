@@ -1,8 +1,10 @@
 import { users, UserModel } from "../../users/userModel";
-import { Call, userCalls  } from "../callsModel/callModel";
+import { Call, userCalls } from "../callsModel/callModel";
 import { Department } from "../../enums/departments";
 import { Status } from "../../enums/status";
 import CallModel from "../callsModel/callModel";
+const jwt = require("jwt-simple");
+const { secret: SECRET } = process.env;
 
 export async function getCalls(req: any, res: any) {
   // try {
@@ -46,42 +48,37 @@ export async function getCalls(req: any, res: any) {
 
 export async function addCall(req: any, res: any) {
   try {
-    const { fullName, phone, date, email, dept, status } = req.body;
+    console.log("hi");
+    const { callerName, callerPhone, issueInfo, issueStatus, callDepartment } =
+      req.body;
 
-    if (!fullName || !phone || !date || !email) {
+    if (
+      !callerName ||
+      !callerPhone ||
+      !issueInfo ||
+      !issueStatus ||
+      !callDepartment
+    ) {
       return res.status(400).send({ error: "Please complete all fields" });
     }
 
-    const user = await UserModel.findOne({ email });
-
+    const token = req.cookies.user;
+    if (!token) throw new Error("no token");
+    const userId = jwt.decode(token, SECRET);
+    const user = await UserModel.findOne({ _id: userId });
     if (!user) {
       return res
         .status(404)
         .send({ error: "User not found with the provided email" });
     }
 
-    const existingCall = await CallModel.findOne({
-      fullName,
-      phone,
-      date,
-      email,
-      dept,
-      status,
-    });
-
-    if (existingCall) {
-      return res
-        .status(400)
-        .send({ error: "Family member with the same details already exists" });
-    }
-
     const newCall = new CallModel({
-      fullName,
-      phone,
-      date,
-      dept,
-      status,
-      user: user._id, // Associate the relative with the user based on userEmail
+      fullName: callerName,
+      phone: callerPhone,
+      callInfo: issueInfo,
+      dept: callDepartment,
+      status: issueStatus,
+      user,
     });
 
     const callDB = await newCall.save();
