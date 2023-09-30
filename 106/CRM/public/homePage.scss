@@ -41,6 +41,7 @@ body {
       width: 100%;
       text-align: center;
       margin-bottom: 1.5rem;
+      margin-top: 1rem;
 
       p {
         display: none;
@@ -52,7 +53,7 @@ body {
         cursor: pointer;
 
         p {
-            display: contents;
+          display: contents;
           font-size: 18px;
         }
       }
@@ -77,29 +78,24 @@ body {
         gap: 5rem;
 
         li {
-          padding-top: 2rem;
+          // padding-top: 1rem;
           margin-bottom: 0.1rem;
 
           &:hover {
             p {
-                display: none;
+              display: none;
             }
           }
         }
         p {
-            display: none;
-            
-          }
-  
+          display: none;
+        }
       }
     }
 
     .navbar__item {
       margin-bottom: 0;
-      /* Remove margin between icons on smaller screens */
     }
-
-    
   }
 
   @media screen and (max-width: 700px) {
@@ -119,19 +115,14 @@ body {
         align-items: center;
         gap: 2.5rem;
 
-        li {
-          padding-top: 2rem;
-        }
-
         p {
-            display: none;
-          }
+          display: none;
+        }
       }
     }
 
     .navbar__item {
       margin-bottom: 0;
-      /* Remove margin between icons on smaller screens */
     }
   }
 }
