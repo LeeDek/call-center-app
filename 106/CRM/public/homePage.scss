@@ -126,3 +126,104 @@ body {
     }
   }
 }
+
+.sections-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.client-requests {
+  width: 45%;
+  margin-top: 2rem;
+  background-color: white;
+  color: black;
+  padding: 10px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      border: 1px solid #ffffff;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #35424a;
+      color: #ffffff;
+    }
+  }
+}
+
+.client-details {
+  width: 45%;
+  margin-top: 2rem;
+  background-color: white;
+  color: black;
+  padding: 10px;
+
+  #profilePic{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .client-details-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .client-details-item {
+      display: flex;
+      align-items: center;
+
+      label {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+/* Styles for creating issues section */
+.create-issue {
+  width: auto;
+  margin-top: 2rem;
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input, select {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+  button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } 
+  button:hover {
+    background-color: #0056b3;
+  }
+}
