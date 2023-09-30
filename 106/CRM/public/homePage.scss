@@ -139,6 +139,8 @@ body {
   background-color: white;
   color: black;
   padding: 10px;
+  max-height: 350px;
+  overflow-y: auto;
 
   table {
     width: 100%;
@@ -226,4 +228,24 @@ body {
   button:hover {
     background-color: #0056b3;
   }
+}
+
+
+@media screen and (max-width: 700px) {
+  body {
+    main {
+      margin-left: 0;
+    }
+  .sections-container {
+    flex-direction: column; 
+  }
+
+  .client-requests,
+  .client-details,
+  .create-issue {
+    width: 95%; 
+    margin-top: 1rem; 
+    padding: 10px;
+  }
+}
 }

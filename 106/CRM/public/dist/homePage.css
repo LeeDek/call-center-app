@@ -117,6 +117,8 @@ body .navbar .material-symbols-outlined:hover p {
   background-color: white;
   color: black;
   padding: 10px;
+  max-height: 350px;
+  overflow-y: auto;
 }
 .client-requests table {
   width: 100%;
@@ -193,4 +195,20 @@ body .navbar .material-symbols-outlined:hover p {
 }
 .create-issue button:hover {
   background-color: #0056b3;
+}
+
+@media screen and (max-width: 700px) {
+  body main {
+    margin-left: 0;
+  }
+  body .sections-container {
+    flex-direction: column;
+  }
+  body .client-requests,
+body .client-details,
+body .create-issue {
+    width: 95%;
+    margin-top: 1rem;
+    padding: 10px;
+  }
 }
