@@ -1,7 +1,6 @@
 function renderState(){
     try{
 const states = document.querySelectorAll(".status");
-console.log('states');
 states.forEach((state) => {
   const element = <HTMLElement>state;
 
@@ -28,7 +27,6 @@ states.forEach((state) => {
     console.error(error);
 }}
 renderState();
-
 
 function createIssue(event) {
     try{
@@ -60,3 +58,44 @@ function createIssue(event) {
     }
 }
 document.getElementById('issueForm').addEventListener('submit', createIssue);
+
+function loadIssues() {
+    try{
+    const issues = JSON.parse(localStorage.getItem('issues')) || [];
+    const table = document.querySelector('.client-requests table tbody') as HTMLTableElement;
+
+    issues.forEach((issue) => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${issue.date}</td>
+            <td>${issue.type}</td>
+            <td class="status clickable">${issue.status}</td>
+        `;
+    });
+
+    renderState();
+    }
+    catch(error){
+      throw new Error("Error in loadIssues function");
+    }
+}
+loadIssues();
+
+function changeTextColor() {
+  try {
+    const color = prompt('Enter color (e.g., red, #00FF00):');
+    if (color) {
+      const table = document.querySelector('.client-requests table tbody');
+      const lastRow = table.querySelector('tr:last-child');
+      if (lastRow) {
+        const cells = lastRow.querySelectorAll('td');
+        cells.forEach((cell) => {
+          cell.style.color = color;
+        });
+      }
+    }
+  }
+   catch (error) {
+    throw new Error("Error in changeTextColor function");
+  }
+};
