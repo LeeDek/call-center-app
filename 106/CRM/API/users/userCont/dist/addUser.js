@@ -37,14 +37,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.addUser = void 0;
+var bcrypt_1 = require("bcrypt");
 var userModel_1 = require("../userModel");
+var saltRounds = 10;
 function addUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, userName, email, role, existingUser, _user, userDB, error_1;
+        var _a, userName, email, role, existingUser, firstPassword, hash, _user, userDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
+                    _b.trys.push([0, 4, , 5]);
                     _a = req.body, userName = _a.userName, email = _a.email, role = _a.role;
                     if (!userName || !email || !role)
                         throw new Error("Some details are missing");
@@ -53,20 +55,35 @@ function addUser(req, res) {
                     existingUser = _b.sent();
                     if (existingUser)
                         throw new Error("Email address already exists");
-                    _user = new userModel_1.UserModel({ userName: userName, email: email, role: role });
-                    return [4 /*yield*/, _user.save()];
+                    firstPassword = generatePass();
+                    return [4 /*yield*/, bcrypt_1["default"].hash(firstPassword, saltRounds)];
                 case 2:
-                    userDB = _b.sent();
-                    res.send({ ok: true });
-                    return [3 /*break*/, 4];
+                    hash = _b.sent();
+                    _user = new userModel_1.UserModel({ userName: userName, email: email, password: hash, role: role });
+                    return [4 /*yield*/, _user.save()];
                 case 3:
+                    userDB = _b.sent();
+                    res.send({ ok: true, userDB: userDB, firstPassword: firstPassword });
+                    return [3 /*break*/, 5];
+                case 4:
                     error_1 = _b.sent();
                     console.error(error_1);
                     res.status(401).send({ error: error_1.message });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
 }
 exports.addUser = addUser;
+function generatePass() {
+    var pass = '';
+    var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+        'abcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 8; i++) {
+        var char = Math.floor(Math.random()
+            * str.length + 1);
+        pass += str.charAt(char);
+    }
+    return pass;
+}

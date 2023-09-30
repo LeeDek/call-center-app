@@ -18,7 +18,8 @@ exports.UserSchema = new mongoose_1.Schema({
     userName: { type: String, required: false },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, "enum": Object.values(role_1.Role), "default": role_1.Role.User }
+    role: { type: String, "enum": Object.values(role_1.Role), "default": role_1.Role.User },
+    firstEntry: { type: Boolean, "default": true }
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);
 exports.users = [];
