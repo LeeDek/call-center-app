@@ -1,10 +1,13 @@
 async function handleRegister(ev: any) {
   try {
     ev.preventDefault(); // stop form from submitting
+    console.log(ev.target.userName.value, ev.target.email.value);
+
     const user = {
       userName: ev.target.userName.value,
       email: ev.target.email.value,
-      role: ev.target.role.value,
+      password: ev.target.password.value,
+      // role: ev.target.role.value,
     };
 
     const response = await fetch("/API/users/add-user", {

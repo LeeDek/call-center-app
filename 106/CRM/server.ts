@@ -33,10 +33,10 @@ app.use("/API/users", userRouter);
 import callsRoutes from "./API/calls/callsRoutes/callsRoutes";
 app.use("/API/calls", callsRoutes);
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).json({ error: "Something went wrong." });
-});
+// app.use((err, req, res, next) => {
+//   console.error(err);
+//   res.status(500).json({ error: "Something went wrong." });
+// });
 
 app.listen(PORT, () => {
   console.log(`APP listening on PORT ${PORT}`);

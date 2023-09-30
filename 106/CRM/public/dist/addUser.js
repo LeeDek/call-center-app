@@ -42,10 +42,11 @@ function handleRegister(ev) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
+                    console.log(ev.target.userName.value, ev.target.email.value);
                     user = {
                         userName: ev.target.userName.value,
                         email: ev.target.email.value,
-                        role: ev.target.role.value
+                        password: ev.target.password.value
                     };
                     return [4 /*yield*/, fetch("/API/users/add-user", {
                             // send data to server
