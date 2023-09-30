@@ -82,7 +82,7 @@ body .navbar .material-symbols-outlined:hover p {
     /* Remove margin between icons on smaller screens */
   }
 }
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 700px) {
   body .navbar {
     flex-direction: row;
     justify-content: left;
@@ -97,7 +97,7 @@ body .navbar .material-symbols-outlined:hover p {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
   body .navbar ul li {
     padding-top: 2rem;
