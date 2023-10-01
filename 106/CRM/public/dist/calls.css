@@ -116,14 +116,14 @@ body .navbar .material-symbols-outlined:hover p {
 .sections-container {
   display: flex;
   justify-content: space-between;
-  color: b9dfea;
   height: 80vh;
 }
 
 .client-requests {
   border-radius: 10px;
-  width: 90%;
+  width: 95%;
   margin-top: 2rem;
+  margin-left: 2rem;
   background-color: #daebf1;
   color: black;
   padding: 10px;
