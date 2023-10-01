@@ -66,7 +66,7 @@ body .navbar .material-symbols-outlined:hover p {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    gap: 4rem;
   }
   body .navbar ul li {
     margin-bottom: 0.1rem;
@@ -150,7 +150,6 @@ body .navbar .material-symbols-outlined:hover p {
 .client-details .client-details-info {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 .client-details .client-details-info .client-details-item {
   display: flex;

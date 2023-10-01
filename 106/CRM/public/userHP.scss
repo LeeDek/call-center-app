@@ -1,3 +1,5 @@
+//navbar style
+
 :root {
   font-size: 16px;
   font-family: "Quicksand", sans-serif;
@@ -35,6 +37,11 @@ body {
       list-style: none;
       padding: 0;
     }
+
+    .navbar__link {
+      text-decoration: none; 
+      color: #b9dfea;
+    } 
 
     li,
     .material-symbols-outlined {
@@ -75,7 +82,7 @@ body {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 5rem;
+        gap: 4rem;
 
         li {
           // padding-top: 1rem;
@@ -176,7 +183,6 @@ body {
   .client-details-info {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 
     .client-details-item {
       display: flex;
