@@ -153,9 +153,10 @@ body {
   border-radius: 10px;
   width: 90%;
   margin-top: 2rem;
-  background-color: #cee5ec;
+  background-color: #daebf1;
   color: black;
   padding: 10px;
+  overflow-y: auto;
   // height: 50vh;
   
 
@@ -167,6 +168,10 @@ body {
       border: 1px solid #ffffff;
       padding: 0.5rem;
       text-align: center;
+    }
+
+    td {
+      padding: 1rem;
     }
 
     .he {

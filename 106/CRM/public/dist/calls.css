@@ -124,9 +124,10 @@ body .navbar .material-symbols-outlined:hover p {
   border-radius: 10px;
   width: 90%;
   margin-top: 2rem;
-  background-color: #cee5ec;
+  background-color: #daebf1;
   color: black;
   padding: 10px;
+  overflow-y: auto;
 }
 .client-requests table {
   width: 100%;
@@ -136,6 +137,9 @@ body .navbar .material-symbols-outlined:hover p {
   border: 1px solid #ffffff;
   padding: 0.5rem;
   text-align: center;
+}
+.client-requests table td {
+  padding: 1rem;
 }
 .client-requests table .he {
   text-align: right;
