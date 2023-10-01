@@ -7,7 +7,7 @@ async function handleRegister(ev: any) {
       role: ev.target.role.value,
     };
 
-    const response = await fetch("/API/users/userCont/add-user", {
+    const response = await fetch("/API/users/add-user", {
       // send data to server
       method: "POST",
       headers: {
@@ -21,4 +21,3 @@ async function handleRegister(ev: any) {
     console.error(error);
   }
 }
-
