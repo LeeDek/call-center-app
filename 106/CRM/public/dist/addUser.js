@@ -34,55 +34,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLogin(ev) {
+function renderAddUser() {
+    try {
+        var html = "\n    <h2>Add new user</h2>\n    <form onsubmit=\" handleRegister(event)\">\n        <label for=\"userName\">Name</label>\n        <input type=\"text\" name=\"userName\">\n        <label for=\"email\">Email</label>\n        <input type=\"email\" name=\"email\">\n        <label for=\"role\">Role</label>\n        <select name=\"role\">\n            <option value=\"user\">User</option>\n            <option value=\"DeptManager\">DeptManager</option>\n            <option value=\"Admin\">Admin</option>\n        </select>\n        <button type=\"submit\">Add</button>\n    </form>";
+        var ShowNewUserRoot = document.querySelector('#newUser');
+        ShowNewUserRoot.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _user, response, _a, error, user, error_1;
+        var user, response, _a, error, userDB, firstPassword, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
-                    _user = {
-                        userName: ev.target.userName,
-                        password: ev.target.password.value,
-                        email: ev.target.email.value
+                    user = {
+                        userName: ev.target.userName.value,
+                        email: ev.target.email.value,
+                        role: ev.target.role.value
                     };
-                    if (!_user.email || !_user.password) {
-                        throw new Error("Please complete all fields");
-                    }
-                    return [4 /*yield*/, fetch("/API/users/userCont/login", {
+                    return [4 /*yield*/, fetch("/API/users/userCont/add-user", {
+                            // send data to server
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify(_user)
+                            body: JSON.stringify(user)
                         })];
                 case 1:
                     response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, user = _a.user;
-                    console.log(error);
-                    if (!user.role)
-                        throw new Error("cannot detect user role");
+                    _a = _b.sent(), error = _a.error, userDB = _a.userDB, firstPassword = _a.firstPassword;
                     if (error)
                         throw new Error(error);
-                    if (user.firstEntry) {
-                        renderUpdateFirstPassword(user._id, user.userName);
-                    }
-                    else {
-                        switch (user.role) {
-                            case 'admin':
-                                window.location.href = "/admin.html";
-                                break;
-                            case 'departmentMng':
-                                window.location.href = "/manager.html";
-                                break;
-                            case 'user':
-                                window.location.href = "/main.html";
-                                break;
-                        }
-                    }
+                    renderNewUser(userDB._id, firstPassword);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
@@ -93,46 +83,32 @@ function handleLogin(ev) {
         });
     });
 }
-function renderUpdateFirstPassword(userId, name) {
-    try {
-        var html = "\n<h2>Hi " + name + "</h2>\n<h3>It's your first entry to our site. <br> Please create a new password </h3>\n\n<form onsubmit=\"updatePassword(event, " + userId + ")\">\n<input type=\"password\" name=\"password\" placeholder=\"New password\">\n<input type=\"password\" name=\"confirmPassword\" placeholder=\"Confirm password\">\n<button type=\"submit\">Create</button>\n</form>\n";
-        var loginRoot = document.querySelector('#login');
-        loginRoot.innerHTML = html;
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function updatePassword(ev, userId) {
+function renderNewUser(userId, firstPassword) {
     return __awaiter(this, void 0, void 0, function () {
-        var newPassword, confirmPassword, response, error_2;
+        var response, result, user, html, ShowNewUserRoot, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 4, , 5]);
-                    ev.preventDefault();
-                    newPassword = ev.target.password.value;
-                    confirmPassword = ev.target.confirmPassword.value;
-                    if (!(newPassword === confirmPassword)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, fetch('API/users/userCont/update-password', {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ newPassword: newPassword, userId: userId })
-                        })];
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/users/userCont/get-user?id=" + userId)];
                 case 1:
                     response = _a.sent();
-                    location.reload();
-                    return [3 /*break*/, 3];
-                case 2: throw new Error("The passwords do not match");
-                case 3: return [3 /*break*/, 5];
-                case 4:
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    user = result.user;
+                    html = "\n        <h2>New user added</h2>\n        <h3>Name:" + user.userName + "</h3>\n        <p>Role:" + user.role + "</p>\n        <p>Email:" + user.email + "</p>\n        <p>Initial password:" + firstPassword + "</p>";
+                    ShowNewUserRoot = document.querySelector('#newUser');
+                    ShowNewUserRoot.innerHTML = html;
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
+// const picturesDB = await PictureModel.find({})
+// res.send({ pictures: picturesDB })
