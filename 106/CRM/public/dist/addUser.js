@@ -34,6 +34,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function handleRegister(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user, response, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+
 function renderAddUser() {
     try {
         var html = "\n    <h2>Add new user</h2>\n    <form onsubmit=\" handleRegister(event)\">\n        <label for=\"userName\">Name</label>\n        <input type=\"text\" name=\"userName\">\n        <label for=\"email\">Email</label>\n        <input type=\"email\" name=\"email\">\n        <label for=\"role\">Role</label>\n        <select name=\"role\">\n            <option value=\"user\">User</option>\n            <option value=\"DeptManager\">DeptManager</option>\n            <option value=\"Admin\">Admin</option>\n        </select>\n        <button type=\"submit\">Add</button>\n    </form>";
@@ -51,13 +59,14 @@ function handleRegister(ev) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
+
+                ev.preventDefault(); // stop form from submitting
                     user = {
                         userName: ev.target.userName.value,
                         email: ev.target.email.value,
                         role: ev.target.role.value
                     };
-                    return [4 /*yield*/, fetch("/API/users/userCont/add-user", {
+                    return [4 /*yield*/, fetch("/API/users/add-user", {
                             // send data to server
                             method: "POST",
                             headers: {
@@ -66,16 +75,16 @@ function handleRegister(ev) {
                             body: JSON.stringify(user)
                         })];
                 case 1:
-                    response = _b.sent();
+                    response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, userDB = _a.userDB, firstPassword = _a.firstPassword;
+                    error = (_a.sent()).error;
                     if (error)
                         throw new Error(error);
-                    renderNewUser(userDB._id, firstPassword);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _b.sent();
+                    error_1 = _a.sent();
+
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
@@ -83,6 +92,7 @@ function handleRegister(ev) {
         });
     });
 }
+
 function renderNewUser(userId, firstPassword) {
     return __awaiter(this, void 0, void 0, function () {
         var response, result, user, html, ShowNewUserRoot, error_2;

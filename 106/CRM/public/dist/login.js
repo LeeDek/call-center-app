@@ -50,7 +50,7 @@ function handleLogin(ev) {
                     if (!_user.email || !_user.password) {
                         throw new Error("Please complete all fields");
                     }
-                    return [4 /*yield*/, fetch("/API/users/userCont/login", {
+                    return [4 /*yield*/, fetch("/API/users/login", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"

@@ -12,7 +12,7 @@ async function handleLogin(ev: any) {
       throw new Error("Please complete all fields");
     }
 
-    const response = await fetch("/API/users/userCont/login", {
+    const response = await fetch("/API/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
