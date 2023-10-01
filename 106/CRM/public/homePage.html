@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client page</title>
+    <script src="./dist/user.js" defer></script>
+    <!-- <script src="./dist/main.js" defer></script> -->
+    <script src="./dist/relatives.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Shantell+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <link rel="stylesheet" href="./dist/homePage.css" />
+    <script src="./dist/homepage.js" defer></script>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <ul class="navbar__list">
+        <li class="navbar__item">
+          <a hidden="#" class="navbar__link"> </a>
+        </li>
+
+        <li class="navbar__item">
+          <p>אנשי קשר</p>
+          <span class="material-symbols-outlined" title="אנשי קשר">
+            contact_phone
+          </span>
+        </li>
+
+        <li class="navbar__item">
+          <p>פניות</p>
+          <span class="material-symbols-outlined" title="פניות">
+            home_storage
+          </span>
+        </li>
+        <li class="navbar__item">
+          <p>התראות</p>
+          <span class="material-symbols-outlined" title="התראות">
+            notifications_active
+          </span>
+        </li>
+        <li class="navbar__item">
+          <p>נתונים</p>
+          <span class="material-symbols-outlined" title="נתונים">
+            monitoring
+          </span>
+        </li>
+        <li class="navbar__item">
+          <p>צ'אט</p>
+          <span class="material-symbols-outlined" title="צ'אט"> chat </span>
+        </li>
+
+        <li class="navbar__item last-icon">
+          <p>הגדרות</p>
+          <span class="material-symbols-outlined" title="הגדרות">
+            settings
+          </span>
+        </li>
+      </ul>
+
+      <!-- אנשי קשר
+פניות
+התראות
+נתונים 
+צ'אט-->
+    </nav>
+    <main>
+      <h1>Client page</h1>
+      <div class="sections-container">
+        <!-- Section for client past requests -->
+        <section class="client-requests">
+          <h2>Client Past Requests</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Request Type</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="list">
+                <td>2023-09-28</td>
+                <td>Electric Cable broken in the middle of the street</td>
+                <td class="status clickable">Fixed</td>
+              </tr>
+              <tr>
+                <td>2023-09-27</td>
+                <td>Car honking in the middle of the night</td>
+                <td class="status clickable">Pending</td>
+              </tr>
+              <tr>
+                <td>2023-02-02</td>
+                <td>Is my refrigerator running?</td>
+                <td class="status clickable">Rejected</td>
+              </tr>
+              <tr>
+                <td>2023-09-27</td>
+                <td>Car honking in the middle of the night</td>
+                <td class="status clickable">Pending</td>
+              </tr>
+              <tr>
+                <td>2023-09-27</td>
+                <td>Car honking in the middle of the night</td>
+                <td class="status clickable">Pending</td>
+              </tr>
+              <tr>
+                <td>2023-09-27</td>
+                <td>Car honking in the middle of the night</td>
+                <td class="status clickable">Pending</td>
+              </tr>
+              <tr>
+                <td>2023-09-27</td>
+                <td>Car honking in the middle of the night</td>
+                <td class="status clickable">Pending</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Section for client details -->
+        <section class="client-details">
+          <h2>Client Details</h2>
+          <div class="client-details-info">
+            <div class="client-details-item">
+                <label for="profilePic">Client Photo</label>
+                <img
+                  id="profilePic"
+                  src="https://w7.pngwing.com/pngs/263/860/png-transparent-rage-comic-internet-meme-drawing-crying-meme-white-food-face.png"
+                  alt="Profile Picture"
+                />
+              </div>
+            <div class="client-details-item">
+              <label for="fullName">Full Name:</label>
+              <span id="fullName">Shimha Ben Happy </span>
+            </div>
+            <div class="client-details-item">
+              <label for="email">Email:</label>
+              <span id="email">shimha.benhappy@gmail.com</span>
+            </div>
+            <div class="client-details-item">
+              <label for="creditCard">Credit Card:</label>
+              <span id="creditCard">**** **** **** 1234</span>
+            </div>
+            <div class="client-details-item">
+              <label for="address">Address:</label>
+              <span id="address">344114 Sderot Anasi St, Kiryat Uno, Israel</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+       <!-- Section for creating issues -->
+        <section class="create-issue">
+          <h2>Create New Issue</h2>
+          <form id="issueForm">
+            <label for="issueDate">Date:</label>
+            <input type="date" id="issueDate" required /><br />
+
+            <label for="issueType">Request Type:</label>
+            <input type="text" id="issueType" required /><br />
+            <button onclick="changeTextColor()">Change Color</button>
+
+            <label for="issueStatus">Status:</label>
+            <select id="issueStatus" required>
+              <option value="Fixed">Fixed</option>
+              <option value="Pending">Pending</option>
+              <option value="Rejected">Rejected</option></select
+            ><br />
+
+            <button type="submit">Create Issue</button>
+          </form>
+        </section>
+    </main>
+  </body>
+</html>
