@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client page</title>
+  <script src="./dist/user.js" defer></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Shantell+Sans:wght@300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <link rel="stylesheet" href="./dist/calls.css" />
+  <script src="./dist/homepage.js" defer></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <ul class="navbar__list">
+      <li class="navbar__item">
+        <a hidden="#" class="navbar__link"> </a>
+      </li>
+      <li class="navbar__item">
+        <a href="/106/CRM/public/userHP.html" class="navbar__link">
+          <p>דף הבית</p>
+          <span class="material-symbols-outlined" title="דף הבית">
+            home
+          </span>
+        </a>
+      </li>
+      <li class="navbar__item">
+        <p>אנשי קשר</p>
+        <span class="material-symbols-outlined" title="אנשי קשר">
+          contact_phone
+        </span>
+      </li>
+
+      <li class="navbar__item">
+        <a href="/106/CRM/public/calls.html" class="navbar__link">
+          <p>פניות</p>
+          <span class="material-symbols-outlined" title="פניות">
+            home_storage
+          </span>
+        </a>
+      </li>
+      <li class="navbar__item">
+        <p>התראות</p>
+        <span class="material-symbols-outlined" title="התראות">
+          notifications_active
+        </span>
+      </li>
+      <li class="navbar__item">
+        <p>נתונים</p>
+        <span class="material-symbols-outlined" title="נתונים">
+          monitoring
+        </span>
+      </li>
+      <li class="navbar__item">
+        <p>צ'אט</p>
+        <span class="material-symbols-outlined" title="צ'אט"> chat </span>
+      </li>
+
+      <li class="navbar__item last-icon">
+        <p>הגדרות</p>
+        <span class="material-symbols-outlined" title="הגדרות">
+          settings
+        </span>
+      </li>
+    </ul>
+
+    <!-- אנשי קשר
+פניות
+התראות
+נתונים 
+צ'אט-->
+  </nav>
+  <main>
+    <h1>ריכוז פניות</h1>
+    <div class="sections-container">
+
+      <!-- Section for client past requests  -->
+
+      <section class="client-requests">
+        <h2>פניות תושב</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Request Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="list">
+            <tr>
+              <td>1-10-2023</td>
+              <td class="he">אין מיזוג בבית הספר הדמוקרטי</td>
+              <td class="status clickable">Fixed</td>
+            </tr>
+
+            <tr>
+              <td>1-10-2023</td>
+              <td class="en">Car honking in the middle of the night</td>
+              <td class="status clickable">Pending</td>
+            </tr>
+            <tr>
+              <td>30-9-2023</td>
+
+              <td class="he">משאית נתקעה ברחוב אהובה עוזרי</td>
+              <td class="status clickable">Fixed</td>
+            </tr>
+            <tr>
+              <td>29-9-2023</td>
+              <td class="he">יש אזעקה מהפיצרייה ברחוב יהודה הלוי 23</td>
+              <td class="status clickable">Pending</td>
+            </tr>
+            <tr>
+              <td>27-9-2023</td>
+              <td class="en">Car honking in the middle of the night</td>
+              <td class="status clickable">Pending</td>
+            </tr>
+            <tr>
+              <td>27-9-2023</td>
+              <td class="he">ברז השקייה התפוצץ ברח' חטיבת גבעתי</td>
+              <td class="status clickable">Pending</td>
+            </tr>
+            <tr>
+              <td>27-9-2023</td>
+              <td class="he">הפחים ברחוב יערה לא פונו</td>
+              <td class="status clickable">Pending</td>
+            </tr>
+            <tr>
+              <td>2-2-2023</td>
+              <td class="en">Is my refrigerator running?</td>
+              <td class="status clickable">Rejected</td>
+            </tr>
+            <tr>
+              <td>2-12-2022</td>
+              <td class="he">אין תאורת רחוב ברח' דרך ירושלים</td>
+              <td class="status clickable">Pending</td>
+            </tr>
+            <tr>
+              <td>28-11-2022</td>
+              <td class="en">Electric Cable broken in the middle of the street</td>
+              <td class="status clickable">Fixed</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>
