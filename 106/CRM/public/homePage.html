@@ -9,12 +9,10 @@
     <script src="./dist/relatives.js" defer></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Shantell+Sans:wght@300&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <link rel="stylesheet" href="./dist/homePage.css" />
     <script src="./dist/homepage.js" defer></script>
@@ -140,13 +138,12 @@
           <h2>Client Details</h2>
           <div class="client-details-info">
             <div class="client-details-item">
-                <label for="profilePic">Client Photo</label>
-                <img
-                  id="profilePic"
-                  src="https://w7.pngwing.com/pngs/263/860/png-transparent-rage-comic-internet-meme-drawing-crying-meme-white-food-face.png"
-                  alt="Profile Picture"
-                />
-              </div>
+              <label for="profilePic">Client Photo</label>
+              <img
+                id="profilePic"
+                src="https://w7.pngwing.com/pngs/263/860/png-transparent-rage-comic-internet-meme-drawing-crying-meme-white-food-face.png"
+                alt="Profile Picture" />
+            </div>
             <div class="client-details-item">
               <label for="fullName">Full Name:</label>
               <span id="fullName">Shimha Ben Happy </span>
@@ -161,7 +158,9 @@
             </div>
             <div class="client-details-item">
               <label for="address">Address:</label>
-              <span id="address">344114 Sderot Anasi St, Kiryat Uno, Israel</span>
+              <span id="address"
+                >344114 Sderot Anasi St, Kiryat Uno, Israel</span
+              >
             </div>
           </div>
         </section>
@@ -178,17 +177,64 @@
             <label for="issueType">Request Type:</label>
             <input type="text" id="issueType" required /><br />
             <button onclick="changeTextColor()">Change Color</button>
+      <!-- Section for creating issues -->
+      <section class="create-issue">
+        <h2>Create New Issue</h2>
+        <form id="issueForm">
+          <!-- <label for="issueDate">Date:</label>
+          <input type="date" id="issueDate" required /><br /> -->
 
-            <label for="issueStatus">Status:</label>
-            <select id="issueStatus" required>
-              <option value="Fixed">Fixed</option>
-              <option value="Pending">Pending</option>
-              <option value="Rejected">Rejected</option></select
-            ><br />
+          <label for="callerName">name:</label>
+          <input type="text" id="callerName" required /><br />
+
+          <label for="callerPhone">Phone number:</label>
+          <input type="text" id="callerPhone" required /><br />
 
             <button type="submit">Create Issue</button>
           </form>
         </section>
     </main> 
+
+          <label for="issueInfo">Body of reference:</label>
+          <textarea style="width: 90%" id="issueInfo" required></textarea><br />
+
+
+          <label for="callDepartment">department:</label>
+          <select id="callDepartment" required>
+            <option value="Finance Administration">
+              Finance Administration
+            </option>
+            <option value="Education Department">Education Department</option>
+            <option value="Operations Administration">
+              Operations Administration
+            </option>
+            <option value="Culture and Sport Administration">
+              Culture and Sport Administration
+            </option>
+            <option value="Human Resources Department">
+              Human Resources Department
+            </option>
+            <option value="Department of Public Inquiries">
+              Department of Public Inquiries
+            </option>
+            <option value="Legal Department">Legal Department</option>
+            <option value="Absorption Department">Absorption Department</option>
+            <option value="Municipal Police Unit">Municipal Police Unit</option>
+            <option value="Municipal Comptroller">Municipal Comptroller</option>
+            <option value="other...">other...</option>
+          </select>
+          <br />
+
+          <label for="issueStatus">Status:</label>
+          <select id="issueStatus" required>
+            <option value="Fixed">Fixed</option>
+            <option value="Pending">Pending</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+          <br />
+          <button type="submit">Create Issue</button>
+        </form>
+      </section>
+    </main>
   </body>
 </html>

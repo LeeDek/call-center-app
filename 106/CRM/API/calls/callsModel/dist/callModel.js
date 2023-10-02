@@ -24,10 +24,10 @@ exports.userCalls = [];
 var CallSchema = new Schema({
     fullName: { type: String, required: true },
     phone: { type: String, required: true },
-    date: { type: String, required: true },
+    date: { type: String, required: true, "default": Date.now() },
     dept: {
         type: String,
-        "enum": Object.values(status_1.Status),
+        "enum": Object.values(departments_1.Department),
         "default": departments_1.Department.Operations
     },
     callInfo: String,

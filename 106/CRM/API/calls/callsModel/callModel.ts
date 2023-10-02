@@ -26,10 +26,10 @@ export const userCalls: [] = [];
 const CallSchema = new Schema({
   fullName: { type: String, required: true },
   phone: { type: String, required: true },
-  date: { type: String, required: true },
+  date: { type: String, required: true, default: Date.now() },
   dept: {
     type: String,
-    enum: Object.values(Status),
+    enum: Object.values(Department),
     default: Department.Operations,
   },
   callInfo: String,
@@ -39,7 +39,6 @@ const CallSchema = new Schema({
 
 const CallModel = model("calls", CallSchema);
 export const _calls: Call[] = [];
-
 
 export default CallModel;
 // -------------------------------------------------------------------------------------

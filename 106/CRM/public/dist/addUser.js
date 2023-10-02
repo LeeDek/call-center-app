@@ -41,7 +41,26 @@ function handleRegister(ev) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    ev.preventDefault(); // stop form from submitting
+
+function renderAddUser() {
+    try {
+        var html = "\n    <h2>Add new user</h2>\n    <form onsubmit=\" handleRegister(event)\">\n        <label for=\"userName\">Name</label>\n        <input type=\"text\" name=\"userName\">\n        <label for=\"email\">Email</label>\n        <input type=\"email\" name=\"email\">\n        <label for=\"role\">Role</label>\n        <select name=\"role\">\n            <option value=\"user\">User</option>\n            <option value=\"DeptManager\">DeptManager</option>\n            <option value=\"Admin\">Admin</option>\n        </select>\n        <button type=\"submit\">Add</button>\n    </form>";
+        var ShowNewUserRoot = document.querySelector('#newUser');
+        ShowNewUserRoot.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function handleRegister(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user, response, _a, error, userDB, firstPassword, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+
+                ev.preventDefault(); // stop form from submitting
                     user = {
                         userName: ev.target.userName.value,
                         email: ev.target.email.value,
@@ -65,6 +84,7 @@ function handleRegister(ev) {
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
+
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
@@ -72,3 +92,33 @@ function handleRegister(ev) {
         });
     });
 }
+
+function renderNewUser(userId, firstPassword) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, result, user, html, ShowNewUserRoot, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("API/users/userCont/get-user?id=" + userId)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    result = _a.sent();
+                    user = result.user;
+                    html = "\n        <h2>New user added</h2>\n        <h3>Name:" + user.userName + "</h3>\n        <p>Role:" + user.role + "</p>\n        <p>Email:" + user.email + "</p>\n        <p>Initial password:" + firstPassword + "</p>";
+                    ShowNewUserRoot = document.querySelector('#newUser');
+                    ShowNewUserRoot.innerHTML = html;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// const picturesDB = await PictureModel.find({})
+// res.send({ pictures: picturesDB })

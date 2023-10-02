@@ -19,6 +19,7 @@ export async function login(req: any, res: any) {
         const match: Boolean = await bcrypt.compare(password, hash)
         if (!match) throw new Error("some of the detail are incorrect")
 
+
         const cookie = {
             uid: userDB._id
         }
@@ -26,9 +27,9 @@ export async function login(req: any, res: any) {
         const token = jwt.encode(cookie, secret)
 
         res.cookie("user", token, { httpOnly: true, maxAge: 1000 * 60 * 15 })
-        res.send({ ok: true, role:userDB.role})
+        res.send({ ok: true,user:userDB, userId: userDB._id, role: userDB.role, firstEntry: userDB.firstEntry })
     } catch (error) {
-            console.error(error);
-            res.status(401).send({ error: error.message })
+        console.error(error);
+        res.status(401).send({ error: error.message })
     }
 }

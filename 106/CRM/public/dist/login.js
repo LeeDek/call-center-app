@@ -36,17 +36,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response, _a, error, role, error_1;
+        var _user, response, _a, error, user, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
                     ev.preventDefault(); // stop form from submitting
-                    user = {
+                    _user = {
+                        userName: ev.target.userName,
                         password: ev.target.password.value,
                         email: ev.target.email.value
                     };
-                    if (!user.email || !user.password) {
+                    if (!_user.email || !_user.password) {
                         throw new Error("Please complete all fields");
                     }
                     return [4 /*yield*/, fetch("/API/users/login", {
@@ -54,28 +55,33 @@ function handleLogin(ev) {
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify(user)
+                            body: JSON.stringify(_user)
                         })];
                 case 1:
                     response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    _a = _b.sent(), error = _a.error, role = _a.role;
+                    _a = _b.sent(), error = _a.error, user = _a.user;
                     console.log(error);
-                    if (!role)
+                    if (!user.role)
                         throw new Error("cannot detect user role");
                     if (error)
                         throw new Error(error);
-                    switch (role) {
-                        case 'admin':
-                            window.location.href = "/admin.html";
-                            break;
-                        case 'departmentMng':
-                            window.location.href = "/manager.html";
-                            break;
-                        case 'user':
-                            window.location.href = "/main.html";
-                            break;
+                    if (user.firstEntry) {
+                        renderUpdateFirstPassword(user._id, user.userName);
+                    }
+                    else {
+                        switch (user.role) {
+                            case 'admin':
+                                window.location.href = "/admin.html";
+                                break;
+                            case 'departmentMng':
+                                window.location.href = "/manager.html";
+                                break;
+                            case 'user':
+                                window.location.href = "/main.html";
+                                break;
+                        }
                     }
                     return [3 /*break*/, 4];
                 case 3:
@@ -83,6 +89,49 @@ function handleLogin(ev) {
                     console.error(error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderUpdateFirstPassword(userId, name) {
+    try {
+        var html = "\n<h2>Hi " + name + "</h2>\n<h3>It's your first entry to our site. <br> Please create a new password </h3>\n\n<form onsubmit=\"updatePassword(event, " + userId + ")\">\n<input type=\"password\" name=\"password\" placeholder=\"New password\">\n<input type=\"password\" name=\"confirmPassword\" placeholder=\"Confirm password\">\n<button type=\"submit\">Create</button>\n</form>\n";
+        var loginRoot = document.querySelector('#login');
+        loginRoot.innerHTML = html;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function updatePassword(ev, userId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newPassword, confirmPassword, response, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 4, , 5]);
+                    ev.preventDefault();
+                    newPassword = ev.target.password.value;
+                    confirmPassword = ev.target.confirmPassword.value;
+                    if (!(newPassword === confirmPassword)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, fetch('API/users/userCont/update-password', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ newPassword: newPassword, userId: userId })
+                        })];
+                case 1:
+                    response = _a.sent();
+                    location.reload();
+                    return [3 /*break*/, 3];
+                case 2: throw new Error("The passwords do not match");
+                case 3: return [3 /*break*/, 5];
+                case 4:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
