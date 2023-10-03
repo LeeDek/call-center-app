@@ -39,6 +39,8 @@ exports.__esModule = true;
 exports.getUserCalls = exports.deleteCall = exports.addCall = exports.getCalls = void 0;
 var userModel_1 = require("../../users/userModel");
 var callModel_1 = require("../callsModel/callModel");
+var jwt = require("jwt-simple");
+var SECRET = process.env.secret;
 function getCalls(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -49,16 +51,25 @@ function getCalls(req, res) {
 exports.getCalls = getCalls;
 function addCall(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, fullName, phone, date, email, dept, status, user, existingCall, newCall, callDB, error_1;
+        var _a, callerName, callerPhone, issueInfo, issueStatus, callDepartment, token, userId, user, newCall, callDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 4, , 5]);
-                    _a = req.body, fullName = _a.fullName, phone = _a.phone, date = _a.date, email = _a.email, dept = _a.dept, status = _a.status;
-                    if (!fullName || !phone || !date || !email) {
+                    _b.trys.push([0, 3, , 4]);
+                    console.log("hi");
+                    _a = req.body, callerName = _a.callerName, callerPhone = _a.callerPhone, issueInfo = _a.issueInfo, issueStatus = _a.issueStatus, callDepartment = _a.callDepartment;
+                    if (!callerName ||
+                        !callerPhone ||
+                        !issueInfo ||
+                        !issueStatus ||
+                        !callDepartment) {
                         return [2 /*return*/, res.status(400).send({ error: "Please complete all fields" })];
                     }
-                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
+                    token = req.cookies.user;
+                    if (!token)
+                        throw new Error("no token");
+                    userId = jwt.decode(token, SECRET);
+                    return [4 /*yield*/, userModel_1.UserModel.findOne({ _id: userId })];
                 case 1:
                     user = _b.sent();
                     if (!user) {
@@ -66,41 +77,26 @@ function addCall(req, res) {
                                 .status(404)
                                 .send({ error: "User not found with the provided email" })];
                     }
-                    return [4 /*yield*/, callModel_1["default"].findOne({
-                            fullName: fullName,
-                            phone: phone,
-                            date: date,
-                            email: email,
-                            dept: dept,
-                            status: status
-                        })];
-                case 2:
-                    existingCall = _b.sent();
-                    if (existingCall) {
-                        return [2 /*return*/, res
-                                .status(400)
-                                .send({ error: "Family member with the same details already exists" })];
-                    }
                     newCall = new callModel_1["default"]({
-                        fullName: fullName,
-                        phone: phone,
-                        date: date,
-                        dept: dept,
-                        status: status,
-                        user: user._id
+                        fullName: callerName,
+                        phone: callerPhone,
+                        callInfo: issueInfo,
+                        dept: callDepartment,
+                        status: issueStatus,
+                        user: user
                     });
                     return [4 /*yield*/, newCall.save()];
-                case 3:
+                case 2:
                     callDB = _b.sent();
                     console.log(callDB);
                     res.status(201).send({ ok: true, call: callDB });
-                    return [3 /*break*/, 5];
-                case 4:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_1 = _b.sent();
                     console.error(error_1);
                     res.status(500).send({ error: error_1.message });
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

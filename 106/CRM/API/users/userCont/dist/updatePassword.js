@@ -36,42 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = void 0;
-var userModel_1 = require("../userModel");
+exports.updatePassword = void 0;
 var bcrypt_1 = require("bcrypt");
-var jwt_simple_1 = require("jwt-simple");
-var SECRET = process.env.SECRET;
-var secret = SECRET;
-function login(req, res) {
+var userModel_1 = require("../userModel");
+var saltRounds = 10;
+function updatePassword(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, hash, match, cookie, token, error_1;
+        var _a, newPassword, userId, hash, userDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    if (!email || !password) {
-                        throw new Error("Please complete all fields");
-                    }
-                    return [4 /*yield*/, userModel_1.UserModel.findOne({ email: email })];
+                    _a = req.body, newPassword = _a.newPassword, userId = _a.userId;
+                    if (!newPassword || !userId)
+                        throw new Error("Some details are missing");
+                    return [4 /*yield*/, bcrypt_1["default"].hash(newPassword, saltRounds)];
                 case 1:
-                    userDB = _b.sent();
-                    if (!userDB)
-                        throw new Error("User not found");
-                    hash = userDB.password;
-                    if (!hash)
-                        throw new Error("some of the detail are incorrect");
-                    return [4 /*yield*/, bcrypt_1["default"].compare(password, hash)];
+                    hash = _b.sent();
+                    return [4 /*yield*/, userModel_1.UserModel.findByIdAndUpdate(userId, { password: hash, firstEntry: false }, { "new": true })];
                 case 2:
-                    match = _b.sent();
-                    if (!match)
-                        throw new Error("some of the detail are incorrect");
-                    cookie = {
-                        uid: userDB._id
-                    };
-                    token = jwt_simple_1["default"].encode(cookie, secret);
-                    res.cookie("user", token, { httpOnly: true, maxAge: 1000 * 60 * 15 });
-                    res.send({ ok: true, user: userDB, userId: userDB._id, role: userDB.role, firstEntry: userDB.firstEntry });
+                    userDB = _b.sent();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
@@ -83,4 +67,4 @@ function login(req, res) {
         });
     });
 }
-exports.login = login;
+exports.updatePassword = updatePassword;

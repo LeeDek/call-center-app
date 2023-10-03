@@ -7,6 +7,6 @@ export enum Department {
   Inquiries = "Department of Public Inquiries", // מחלקת פניות הציבור
   Legal = "Legal Department", // מחלקה משפטית
   Absorption = "Absorption Department", // אגף קליטה 
-  Police = "Municipal Police Unit", // שיטור עירוני
+  MuniPolice = "Municipal Police Unit", // שיטור עירוני
   Comptroller = "Municipal Comptroller"// מוקד שליטה עירוני 106
   }
