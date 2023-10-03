@@ -49,8 +49,9 @@ export async function getCalls(req: any, res: any) {
 export async function addCall(req: any, res: any) {
   try {
     console.log("hi");
-    const { callerName, callerPhone, issueInfo, issueStatus, callDepartment } =
-      req.body;
+    const { callerName, callerPhone, issueInfo, callDepartment } = req.body;
+
+      const issueStatus = Status.Open;
 
     if (
       !callerName ||

@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.getUserCalls = exports.deleteCall = exports.addCall = exports.getCalls = void 0;
 var userModel_1 = require("../../users/userModel");
+var status_1 = require("../../enums/status");
 var callModel_1 = require("../callsModel/callModel");
 var jwt = require("jwt-simple");
 var SECRET = process.env.secret;
@@ -51,13 +52,14 @@ function getCalls(req, res) {
 exports.getCalls = getCalls;
 function addCall(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, callerName, callerPhone, issueInfo, issueStatus, callDepartment, token, userId, user, newCall, callDB, error_1;
+        var _a, callerName, callerPhone, issueInfo, callDepartment, issueStatus, token, userId, user, newCall, callDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 3, , 4]);
                     console.log("hi");
-                    _a = req.body, callerName = _a.callerName, callerPhone = _a.callerPhone, issueInfo = _a.issueInfo, issueStatus = _a.issueStatus, callDepartment = _a.callDepartment;
+                    _a = req.body, callerName = _a.callerName, callerPhone = _a.callerPhone, issueInfo = _a.issueInfo, callDepartment = _a.callDepartment;
+                    issueStatus = status_1.Status.Open;
                     if (!callerName ||
                         !callerPhone ||
                         !issueInfo ||

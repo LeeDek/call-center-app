@@ -13,11 +13,14 @@ export async function getCallsByStatus(req, res) {
         .json({
           error: "status is ${currentStatus}, invalided or not received",
         });
-    const callsDB = await CallModel.find({ status: currentStatus });
+
+  // Use the Status enum for comparison
+    const callsDB = await CallModel.find({ status: Status[currentStatus] });
     if (!callsDB)
       return res
         .status(404)
-        .json({ error: `${currentStatus} calls are not found` });
+        .json({ error: `${Status[currentStatus]} calls are not found` });
+
     res.send({ callsDB });
   } catch (error) {
     console.error(error);

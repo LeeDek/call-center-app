@@ -37,9 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 function renderState() {
     try {
         var states = document.querySelectorAll(".status");
-
         console.log("states");
-
         states.forEach(function (state) {
             var element = state;
             if (element.innerHTML == "Fixed") {
@@ -97,42 +95,6 @@ function createIssue(event) {
         console.error(error);
     }
 }
-document.getElementById('issueForm').addEventListener('submit', createIssue);
-function loadIssues() {
-    try {
-        var issues = JSON.parse(localStorage.getItem('issues')) || [];
-        var table_1 = document.querySelector('.client-requests table tbody');
-        issues.forEach(function (issue) {
-            var newRow = table_1.insertRow();
-            newRow.innerHTML = "\n            <td>" + issue.date + "</td>\n            <td>" + issue.type + "</td>\n            <td class=\"status clickable\">" + issue.status + "</td>\n        ";
-        });
-        renderState();
-    }
-    catch (error) {
-        throw new Error("Error in loadIssues function");
-    }
-}
-loadIssues();
-function changeTextColor() {
-    try {
-        var color_1 = prompt('Enter color (e.g., red, #00FF00):');
-        if (color_1) {
-            var table = document.querySelector('.client-requests table tbody');
-            var lastRow = table.querySelector('tr:last-child');
-            if (lastRow) {
-                var cells = lastRow.querySelectorAll('td');
-                cells.forEach(function (cell) {
-                    cell.style.color = color_1;
-                });
-            }
-        }
-    }
-    catch (error) {
-        throw new Error("Error in changeTextColor function");
-    }
-}
-;
-=======
 document.getElementById("issueForm").addEventListener("submit", createIssue);
 function addCallToMongo(inputs) {
     return __awaiter(this, void 0, void 0, function () {
@@ -168,3 +130,38 @@ function addCallToMongo(inputs) {
         });
     });
 }
+document.getElementById('issueForm').addEventListener('submit', createIssue);
+function loadIssues() {
+    try {
+        var issues = JSON.parse(localStorage.getItem('issues')) || [];
+        var table_1 = document.querySelector('.client-requests table tbody');
+        issues.forEach(function (issue) {
+            var newRow = table_1.insertRow();
+            newRow.innerHTML = "\n            <td>" + issue.date + "</td>\n            <td>" + issue.type + "</td>\n            <td class=\"status clickable\">" + issue.status + "</td>\n        ";
+        });
+        renderState();
+    }
+    catch (error) {
+        throw new Error("Error in loadIssues function");
+    }
+}
+loadIssues();
+function changeTextColor() {
+    try {
+        var color_1 = prompt('Enter color (e.g., red, #00FF00):');
+        if (color_1) {
+            var table = document.querySelector('.client-requests table tbody');
+            var lastRow = table.querySelector('tr:last-child');
+            if (lastRow) {
+                var cells = lastRow.querySelectorAll('td');
+                cells.forEach(function (cell) {
+                    cell.style.color = color_1;
+                });
+            }
+        }
+    }
+    catch (error) {
+        throw new Error("Error in changeTextColor function");
+    }
+}
+;

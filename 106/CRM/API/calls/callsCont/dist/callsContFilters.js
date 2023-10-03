@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.queryByDynamicDeptAndStatus = exports.getCallsByDept = exports.getCallsByStatus = void 0;
 var callModel_1 = require("../callsModel/callModel");
+var status_1 = require("../../enums/status");
 function getCallsByStatus(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var currentStatus, callsDB, error_1;
@@ -52,13 +53,13 @@ function getCallsByStatus(req, res) {
                                 .json({
                                 error: "status is ${currentStatus}, invalided or not received"
                             })];
-                    return [4 /*yield*/, callModel_1["default"].find({ status: currentStatus })];
+                    return [4 /*yield*/, callModel_1["default"].find({ status: status_1.Status[currentStatus] })];
                 case 1:
                     callsDB = _a.sent();
                     if (!callsDB)
                         return [2 /*return*/, res
                                 .status(404)
-                                .json({ error: currentStatus + " calls are not found" })];
+                                .json({ error: status_1.Status[currentStatus] + " calls are not found" })];
                     res.send({ callsDB: callsDB });
                     return [3 /*break*/, 3];
                 case 2:

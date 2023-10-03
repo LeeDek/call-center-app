@@ -133,6 +133,9 @@ body .navbar .material-symbols-outlined:hover p {
   width: 100%;
   border-collapse: collapse;
 }
+.client-requests table .invisible-button {
+  cursor: pointer;
+}
 .client-requests table th, .client-requests table td {
   border: 1px solid #ffffff;
   padding: 0.5rem;
@@ -150,6 +153,7 @@ body .navbar .material-symbols-outlined:hover p {
 .client-requests table th {
   background-color: #35424a;
   color: #ffffff;
+  user-select: none;
 }
 
 /* Styles for creating issues section */
