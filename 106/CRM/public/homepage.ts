@@ -1,14 +1,3 @@
-function renderState(){
-    try{
-const states = document.querySelectorAll(".status");
-states.forEach((state) => {
-  const element = <HTMLElement>state;
-
-  if (element.innerHTML == "Fixed") {
-    element.style.color = "white";
-    element.style.backgroundColor = "lime";
-  }
-
 function renderState() {
   try {
     const states = document.querySelectorAll(".status");

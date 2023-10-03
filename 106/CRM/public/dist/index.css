@@ -9,15 +9,8 @@ h1 {
   margin-bottom: 20px;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
+a {
+  all: unset;
   padding: 10px 20px;
   background-color: #515257;
   color: white;
@@ -27,7 +20,7 @@ button {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button:hover {
+a:hover {
   background-color: #6c6d73;
 }
 
@@ -37,7 +30,7 @@ button:hover {
     margin: 20px;
   }
 
-  h1 {
+  h1, h2 {
     font-size: 1.5em;
   }
 
@@ -45,7 +38,7 @@ button:hover {
     padding: 8px;
   }
 
-  button {
+  a {
     padding: 8px 16px;
   }
 }

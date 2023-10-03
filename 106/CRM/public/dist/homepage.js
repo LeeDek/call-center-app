@@ -37,157 +37,143 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 function renderState() {
     try {
         var states = document.querySelectorAll(".status");
+        console.log("states");
         states.forEach(function (state) {
             var element = state;
             if (element.innerHTML == "Fixed") {
                 element.style.color = "white";
                 element.style.backgroundColor = "lime";
             }
-            function renderState() {
-                try {
-                    var states_1 = document.querySelectorAll(".status");
-                    console.log("states");
-                    states_1.forEach(function (state) {
-                        var element = state;
-                        if (element.innerHTML == "Fixed") {
-                            element.style.color = "white";
-                            element.style.backgroundColor = "lime";
-                        }
-                        if (element.innerHTML == "Pending") {
-                            element.style.color = "white";
-                            element.style.backgroundColor = "blue";
-                        }
-                        if (element.innerHTML == "Rejected") {
-                            element.style.color = "white";
-                            element.style.backgroundColor = "red";
-                        }
-                        element.addEventListener("click", function () {
-                            console.log("clicked");
-                        });
-                    });
-                }
-                catch (error) {
-                    console.error(error);
-                }
+            if (element.innerHTML == "Pending") {
+                element.style.color = "white";
+                element.style.backgroundColor = "blue";
             }
-            renderState();
-            function createIssue(event) {
-                try {
-                    event.preventDefault();
-                    var callerName = document.getElementById("callerName")
-                        .value;
-                    var callerPhone = (document.getElementById("callerPhone")).value;
-                    var issueInfo = document.getElementById("issueInfo")
-                        .value;
-                    var issueStatus = (document.getElementById("issueStatus")).value;
-                    var callDepartment = (document.getElementById("issueInfo")).value;
-                    var inputs = {
-                        callerName: callerName,
-                        callerPhone: callerPhone,
-                        issueInfo: issueInfo,
-                        issueStatus: issueStatus,
-                        callDepartment: callDepartment
-                    };
-                    addCallToMongo(inputs);
-                    var table = document.querySelector(".client-requests table tbody");
-                    var newRow = table.insertRow();
-                    newRow.innerHTML = "\n        <td>" + callerName + "</td>\n        <td>" + issueInfo + "</td>\n        <td class=\"status clickable\">" + issueStatus + "</td>\n    ";
-                    renderState();
-                    var issues = JSON.parse(localStorage.getItem("issues")) || [];
-                    var newIssue = { date: callerName, type: issueInfo, status: issueStatus };
-                    issues.push(newIssue);
-                    localStorage.setItem("issues", JSON.stringify(issues));
-                    var form = document.getElementById("issueForm");
-                    form.reset();
-                }
-                catch (error) {
-                    console.error(error);
-                }
+            if (element.innerHTML == "Rejected") {
+                element.style.color = "white";
+                element.style.backgroundColor = "red";
             }
-            document.getElementById("issueForm").addEventListener("submit", createIssue);
-            function addCallToMongo(inputs) {
-                return __awaiter(this, void 0, void 0, function () {
-                    var postInit, response, ok, error_1;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0:
-                                _a.trys.push([0, 3, , 4]);
-                                postInit = {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        Authorization: "Bearer YourAccessToken"
-                                    },
-                                    body: JSON.stringify(inputs)
-                                };
-                                return [4 /*yield*/, fetch("/API/calls//add-call", postInit)];
-                            case 1:
-                                response = _a.sent();
-                                return [4 /*yield*/, response.json()];
-                            case 2:
-                                ok = (_a.sent()).ok;
-                                if (!ok) {
-                                    throw new Error("Error in server side, call was not create successfuly");
-                                }
-                                return [3 /*break*/, 4];
-                            case 3:
-                                error_1 = _a.sent();
-                                console.error(error_1);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
-                        }
-                    });
-                });
-            }
-            document.getElementById('issueForm').addEventListener('submit', createIssue);
-            function loadIssues() {
-                try {
-                    var issues = JSON.parse(localStorage.getItem('issues')) || [];
-                    var table_1 = document.querySelector('.client-requests table tbody');
-                    issues.forEach(function (issue) {
-                        var newRow = table_1.insertRow();
-                        newRow.innerHTML = "\n            <td>" + issue.date + "</td>\n            <td>" + issue.type + "</td>\n            <td class=\"status clickable\">" + issue.status + "</td>\n        ";
-                    });
-                    renderState();
-                }
-                catch (error) {
-                    throw new Error("Error in loadIssues function");
-                }
-            }
-            loadIssues();
-            function changeTextColor() {
-                try {
-                    var color_1 = prompt('Enter color (e.g., red, #00FF00):');
-                    if (color_1) {
-                        var table = document.querySelector('.client-requests table tbody');
-                        var lastRow = table.querySelector('tr:last-child');
-                        if (lastRow) {
-                            var cells = lastRow.querySelectorAll('td');
-                            cells.forEach(function (cell) {
-                                cell.style.color = color_1;
-                            });
-                        }
-                    }
-                }
-                catch (error) {
-                    throw new Error("Error in changeTextColor function");
-                }
-            }
-            ;
-            function sortTime() {
-                var table = document.querySelector('.client-requests table tbody');
-                var rows = Array.from(table.getElementsByTagName('tr'));
-                rows.sort(function (a, b) {
-                    var dateA = new Date(a.cells[0].innerText).getTime();
-                    var dateB = new Date(b.cells[0].innerText).getTime();
-                    return dateB - dateA;
-                });
-                rows.forEach(function (row) { return table.removeChild(row); });
-                rows.forEach(function (row) { return table.appendChild(row); });
-            }
-            document.addEventListener('DOMContentLoaded', sortTime);
+            element.addEventListener("click", function () {
+                console.log("clicked");
+            });
         });
     }
-    finally {
+    catch (error) {
+        console.error(error);
     }
 }
+renderState();
+function createIssue(event) {
+    try {
+        event.preventDefault();
+        var callerName = document.getElementById("callerName")
+            .value;
+        var callerPhone = (document.getElementById("callerPhone")).value;
+        var issueInfo = document.getElementById("issueInfo")
+            .value;
+        var issueStatus = (document.getElementById("issueStatus")).value;
+        var callDepartment = (document.getElementById("issueInfo")).value;
+        var inputs = {
+            callerName: callerName,
+            callerPhone: callerPhone,
+            issueInfo: issueInfo,
+            issueStatus: issueStatus,
+            callDepartment: callDepartment
+        };
+        addCallToMongo(inputs);
+        var table = document.querySelector(".client-requests table tbody");
+        var newRow = table.insertRow();
+        newRow.innerHTML = "\n        <td>" + callerName + "</td>\n        <td>" + issueInfo + "</td>\n        <td class=\"status clickable\">" + issueStatus + "</td>\n    ";
+        renderState();
+        var issues = JSON.parse(localStorage.getItem("issues")) || [];
+        var newIssue = { date: callerName, type: issueInfo, status: issueStatus };
+        issues.push(newIssue);
+        localStorage.setItem("issues", JSON.stringify(issues));
+        var form = document.getElementById("issueForm");
+        form.reset();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+document.getElementById("issueForm").addEventListener("submit", createIssue);
+function addCallToMongo(inputs) {
+    return __awaiter(this, void 0, void 0, function () {
+        var postInit, response, ok, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    postInit = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer YourAccessToken"
+                        },
+                        body: JSON.stringify(inputs)
+                    };
+                    return [4 /*yield*/, fetch("/API/calls//add-call", postInit)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    ok = (_a.sent()).ok;
+                    if (!ok) {
+                        throw new Error("Error in server side, call was not create successfuly");
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+document.getElementById('issueForm').addEventListener('submit', createIssue);
+function loadIssues() {
+    try {
+        var issues = JSON.parse(localStorage.getItem('issues')) || [];
+        var table_1 = document.querySelector('.client-requests table tbody');
+        issues.forEach(function (issue) {
+            var newRow = table_1.insertRow();
+            newRow.innerHTML = "\n            <td>" + issue.date + "</td>\n            <td>" + issue.type + "</td>\n            <td class=\"status clickable\">" + issue.status + "</td>\n        ";
+        });
+        renderState();
+    }
+    catch (error) {
+        throw new Error("Error in loadIssues function");
+    }
+}
+loadIssues();
+function changeTextColor() {
+    try {
+        var color_1 = prompt('Enter color (e.g., red, #00FF00):');
+        if (color_1) {
+            var table = document.querySelector('.client-requests table tbody');
+            var lastRow = table.querySelector('tr:last-child');
+            if (lastRow) {
+                var cells = lastRow.querySelectorAll('td');
+                cells.forEach(function (cell) {
+                    cell.style.color = color_1;
+                });
+            }
+        }
+    }
+    catch (error) {
+        throw new Error("Error in changeTextColor function");
+    }
+}
+;
+function sortTime() {
+    var table = document.querySelector('.client-requests table tbody');
+    var rows = Array.from(table.getElementsByTagName('tr'));
+    rows.sort(function (a, b) {
+        var dateA = new Date(a.cells[0].innerText).getTime();
+        var dateB = new Date(b.cells[0].innerText).getTime();
+        return dateB - dateA;
+    });
+    rows.forEach(function (row) { return table.removeChild(row); });
+    rows.forEach(function (row) { return table.appendChild(row); });
+}
+document.addEventListener('DOMContentLoaded', sortTime);
