@@ -81,3 +81,15 @@ function changeTextColor() {
     }
 }
 ;
+function sortTime() {
+    var table = document.querySelector('.client-requests table tbody');
+    var rows = Array.from(table.getElementsByTagName('tr'));
+    rows.sort(function (a, b) {
+        var dateA = new Date(a.cells[0].innerText).getTime();
+        var dateB = new Date(b.cells[0].innerText).getTime();
+        return dateB - dateA;
+    });
+    rows.forEach(function (row) { return table.removeChild(row); });
+    rows.forEach(function (row) { return table.appendChild(row); });
+}
+document.addEventListener('DOMContentLoaded', sortTime);

@@ -99,3 +99,20 @@ function changeTextColor() {
     throw new Error("Error in changeTextColor function");
   }
 };
+
+function sortTime() {
+  const table = document.querySelector('.client-requests table tbody');
+  const rows = Array.from(table.getElementsByTagName('tr'));
+
+  rows.sort((a, b) => {
+    const dateA = new Date(a.cells[0].innerText).getTime();
+    const dateB = new Date(b.cells[0].innerText).getTime();
+    return dateB - dateA;
+  });
+
+  rows.forEach(row => table.removeChild(row));
+
+  rows.forEach(row => table.appendChild(row));
+}
+document.addEventListener('DOMContentLoaded', sortTime);
+
