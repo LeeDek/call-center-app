@@ -11,6 +11,6 @@ var Department;
     Department["Inquiries"] = "Department of Public Inquiries";
     Department["Legal"] = "Legal Department";
     Department["Absorption"] = "Absorption Department";
-    Department["Police"] = "Municipal Police Unit";
+    Department["MuniPolice"] = "Municipal Police Unit";
     Department["Comptroller"] = "Municipal Comptroller"; // מוקד שליטה עירוני 106
 })(Department = exports.Department || (exports.Department = {}));
