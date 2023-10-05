@@ -1,44 +1,71 @@
-body {
-  font-family: "Quicksand", sans-serif;
-  text-align: center;
-  margin: 50px;
+html {
+  background-color: #0783a9;
+  background-image: url("https://snov.io/blog/wp-content/uploads/2021/02/2jT2rNPfndRmSJ9SOdn9VFEchk8AEKpSGvPPM1Xu-1-1.png");
+  background-size: 2200px;
+  background-repeat: no-repeat;
 }
-
-h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-a {
-  all: unset;
-  padding: 10px 20px;
-  background-color: #515257;
+html body {
   color: white;
-  border: none;
+  text-align: center;
+  margin: 3rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 17px;
+}
+html body h1 {
+  margin: auto;
+  width: 200px;
+  font-size: 40px;
+  border-radius: 7px;
+  background-color: rgba(250, 246, 243, 0.139);
+}
+html body h2 {
+  margin: 0.8rem auto 0.8rem auto;
+  width: 330px;
+  border-radius: 7px;
+  font-size: 32px;
+  background-color: rgba(250, 246, 243, 0.281);
+}
+html body #login, html body #register {
+  margin: 0.2rem;
+  color: #0588b4;
+  font-size: 27px;
+  font-weight: bolder;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: rgba(250, 246, 243, 0.673);
 }
-
-a:hover {
-  background-color: #6c6d73;
+html body img {
+  margin: 1rem;
+  width: 250px;
 }
-
-/* Mobile Styles */
-@media (max-width: 600px) {
-  body {
-    margin: 20px;
-  }
-
-  h1, h2 {
-    font-size: 1.5em;
-  }
-
-  input {
-    padding: 8px;
-  }
-
-  a {
-    padding: 8px 16px;
-  }
+html body form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 200px;
+}
+html body form input {
+  margin: 0.5rem;
+  height: 25px;
+  border: 2px solid #275464;
+}
+html body form select {
+  height: 30px;
+  margin: 0.5rem;
+}
+html body form label {
+  margin: 0.2rem;
+  font-size: 18px;
+}
+html body #deleteButton,
+html body #updateButton {
+  display: none;
+}
+html body button {
+  height: 35px;
+  margin-top: 1rem;
+  border: 2px solid #275464;
+  background-color: #5c9ab1;
+}
+html body button:hover {
+  background-color: #295d6f;
 }
