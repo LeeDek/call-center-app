@@ -1,5 +1,12 @@
+
+
 html {
     background-color: rgb(7, 131, 169);
+    background-image: url("https://snov.io/blog/wp-content/uploads/2021/02/2jT2rNPfndRmSJ9SOdn9VFEchk8AEKpSGvPPM1Xu-1-1.png");
+    background-size: 2200px;
+    background-repeat: no-repeat;
+
+    
 
 body {
     color: white;
@@ -7,6 +14,32 @@ body {
     margin: 3rem;
     font-family: "Quicksand", sans-serif;
     font-size: 17px;
+    
+
+    h1 {
+        margin: auto;
+        width: 88px;
+        font-size: 40px;
+        border-radius: 7px;
+        background-color: rgba(250, 246, 243, 0.139);
+        
+    }
+  h2 {
+        margin: 0.8rem  auto .8rem auto;
+        width: 500px;
+        border-radius: 7px;
+        font-size: 32px;
+        background-color: rgba(250, 246, 243, 0.281);  
+    }
+
+    #login, #register {
+        margin: .2rem;
+        color: rgb(5, 136, 180);
+        font-size: 27px;
+        font-weight: bolder;
+        border-radius: 5px;
+        background-color: rgba(250, 246, 243, 0.673);  
+    }
 
     img {
         margin: 1rem;

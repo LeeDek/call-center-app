@@ -1,5 +1,8 @@
 html {
   background-color: #0783a9;
+  background-image: url("https://snov.io/blog/wp-content/uploads/2021/02/2jT2rNPfndRmSJ9SOdn9VFEchk8AEKpSGvPPM1Xu-1-1.png");
+  background-size: 2200px;
+  background-repeat: no-repeat;
 }
 html body {
   color: white;
@@ -7,6 +10,28 @@ html body {
   margin: 3rem;
   font-family: "Quicksand", sans-serif;
   font-size: 17px;
+}
+html body h1 {
+  margin: auto;
+  width: 88px;
+  font-size: 40px;
+  border-radius: 7px;
+  background-color: rgba(250, 246, 243, 0.139);
+}
+html body h2 {
+  margin: 0.8rem auto 0.8rem auto;
+  width: 500px;
+  border-radius: 7px;
+  font-size: 32px;
+  background-color: rgba(250, 246, 243, 0.281);
+}
+html body #login, html body #register {
+  margin: 0.2rem;
+  color: #0588b4;
+  font-size: 27px;
+  font-weight: bolder;
+  border-radius: 5px;
+  background-color: rgba(250, 246, 243, 0.673);
 }
 html body img {
   margin: 1rem;
