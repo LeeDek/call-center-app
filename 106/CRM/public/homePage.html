@@ -179,9 +179,9 @@
             <input type="text" id="issueType" required /><br />
             <button onclick="changeTextColor()">Change Color</button>
       <!-- Section for creating issues -->
-      <section class="create-issue">
-        <h2>Create New Issue</h2>
-        <form id="issueForm">
+      <!-- <section class="create-issue"> -->
+        <!-- <h2>Create New Issue</h2>
+        <form id="issueForm"> -->
           <!-- <label for="issueDate">Date:</label>
           <input type="date" id="issueDate" required /><br /> -->
 
@@ -194,11 +194,10 @@
             <button type="submit">Create Issue</button>
           </form>
         </section>
-    </main> 
-
+   
+<div class="newIssue">
           <label for="issueInfo">Body of reference:</label>
           <textarea style="width: 90%" id="issueInfo" required></textarea><br />
-
 
           <label for="callDepartment">department:</label>
           <select id="callDepartment" required>
@@ -225,7 +224,6 @@
             <option value="other...">other...</option>
           </select>
           <br />
-
           <label for="issueStatus">Status:</label>
           <select id="issueStatus" required>
             <option value="Fixed">Fixed</option>
@@ -236,6 +234,7 @@
           <button type="submit">Create Issue</button>
         </form>
       </section>
+    </div>
     </main>
   </body>
 </html>

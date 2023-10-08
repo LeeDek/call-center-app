@@ -110,6 +110,14 @@ body .navbar .material-symbols-outlined:hover p {
   }
 }
 
+.newIssue {
+  margin-top: 0.5rem;
+  gap: 1rem;
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+}
+
 .sections-container {
   display: flex;
   justify-content: space-between;
