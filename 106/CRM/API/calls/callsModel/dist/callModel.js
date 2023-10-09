@@ -37,6 +37,12 @@ var CallSchema = new Schema({
 var CallModel = mongoose_1.model("calls", CallSchema);
 exports._calls = [];
 exports["default"] = CallModel;
+// async function buildCall(){
+//   const newCall =  new CallModel({fullName:"ג'וש", phone:"0501111111", dept:Department.Absorption, callInfo:"something bad", user:{userName:"user5",email:"user5@user.com",password:"1234", role:Role.User, firstEntry:false}}) 
+//  const userDB =  await newCall.save()
+//   console.log(userDB)
+// }
+// buildCall()
 // -------------------------------------------------------------------------------------
 // enum DepartmentType {
 //   Department1 = "תכנון עירוני",

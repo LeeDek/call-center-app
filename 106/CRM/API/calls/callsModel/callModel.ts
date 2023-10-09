@@ -1,5 +1,6 @@
 import mongoose, { model } from "mongoose";
 import { Department } from "../../enums/departments";
+import {Role} from "../../enums/role"
 import { Status } from "../../enums/status";
 import { User } from "../../users/userModel";
 const { Schema } = mongoose;
@@ -41,6 +42,14 @@ const CallModel = model("calls", CallSchema);
 export const _calls: Call[] = [];
 
 export default CallModel;
+
+
+// async function buildCall(){
+//   const newCall =  new CallModel({fullName:"ג'וש", phone:"0501111111", dept:Department.Absorption, callInfo:"something bad", user:{userName:"user5",email:"user5@user.com",password:"1234", role:Role.User, firstEntry:false}}) 
+//  const userDB =  await newCall.save()
+//   console.log(userDB)
+// }
+// buildCall()
 // -------------------------------------------------------------------------------------
 
 // enum DepartmentType {

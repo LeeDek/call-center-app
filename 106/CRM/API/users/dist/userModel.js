@@ -23,3 +23,15 @@ exports.UserSchema = new mongoose_1.Schema({
 });
 exports.UserModel = mongoose_1.model("users", exports.UserSchema);
 exports.users = [];
+// async function buildAdmin(){
+//   const newUser =  new UserModel({userName:"admin",email:"admin@admin.com",password:"1234", role:Role.Admin, firstEntry:false}) 
+//  const userDB =  await newUser.save()
+//   console.log(userDB)
+// }
+// async function buildUser(){
+//   const newUser =  new UserModel({userName:"user5",email:"user5@user.com",password:"1234", role:Role.User, firstEntry:false}) 
+//  const userDB =  await newUser.save()
+//   console.log(userDB)
+// }
+// buildUser()
+// // buildAdmin()
