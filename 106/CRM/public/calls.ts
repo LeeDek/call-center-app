@@ -1,4 +1,20 @@
 import { Status } from '../API/enums/status';
+const callsData = [
+  {
+    date: "1-10-2023",
+    requestType: "אין מיזוג בבית הספר הדמוקרטי",
+    dept: "Operations",
+    status: "Fixed",
+  },
+
+  {
+    date: "30-09-2023",
+    requestType: "משאית נתקעה ברחוב אהובה עוזרי",
+    dept: "Operations",
+    status: "Fixed",
+  },
+  // Add more call objects here
+];
 
 enum Departments {}
 
@@ -32,7 +48,7 @@ sortStatusButton.addEventListener("click", async () => {
 });
 
 function updateTableWithSortedData(sortedData) {
-  const tableBody = document.querySelector(".client-requests tbody");
+  const tableBody = document.querySelector("body > main > div > section > table > tbody");
   tableBody.innerHTML = ""; // Clear existing rows
 
   // Loop through sorted data and render rows
@@ -45,24 +61,9 @@ function updateTableWithSortedData(sortedData) {
     `;
     tableBody.appendChild(row);
   });
+  updateTableWithSortedData(sortedData)
 }
 
-const callsData = [
-  {
-    date: "1-10-2023",
-    requestType: "אין מיזוג בבית הספר הדמוקרטי",
-    dept: "Operations",
-    status: "Fixed",
-  },
-
-  {
-    date: "30-09-2023",
-    requestType: "משאית נתקעה ברחוב אהובה עוזרי",
-    dept: "Operations",
-    status: "Fixed",
-  },
-  // Add more call objects here
-];
 
 // Function to render the table rows based on data
 function renderCalls(callsData) {

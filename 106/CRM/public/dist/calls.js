@@ -37,6 +37,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var status_1 = require("../API/enums/status");
+var callsData = [
+    {
+        date: "1-10-2023",
+        requestType: "אין מיזוג בבית הספר הדמוקרטי",
+        dept: "Operations",
+        status: "Fixed"
+    },
+    {
+        date: "30-09-2023",
+        requestType: "משאית נתקעה ברחוב אהובה עוזרי",
+        dept: "Operations",
+        status: "Fixed"
+    },
+];
 var Departments;
 (function (Departments) {
 })(Departments || (Departments = {}));
@@ -75,7 +89,7 @@ sortStatusButton.addEventListener("click", function () { return __awaiter(void 0
     });
 }); });
 function updateTableWithSortedData(sortedData) {
-    var tableBody = document.querySelector(".client-requests tbody");
+    var tableBody = document.querySelector("body > main > div > section > table > tbody");
     tableBody.innerHTML = ""; // Clear existing rows
     // Loop through sorted data and render rows
     sortedData.forEach(function (call) {
@@ -83,21 +97,8 @@ function updateTableWithSortedData(sortedData) {
         row.innerHTML = "\n      <td>" + call.date + "</td>\n      <td>" + call.dept + "</td>\n      <td>" + call.status + "</td>\n    ";
         tableBody.appendChild(row);
     });
+    updateTableWithSortedData(sortedData);
 }
-var callsData = [
-    {
-        date: "1-10-2023",
-        requestType: "אין מיזוג בבית הספר הדמוקרטי",
-        dept: "Operations",
-        status: "Fixed"
-    },
-    {
-        date: "30-09-2023",
-        requestType: "משאית נתקעה ברחוב אהובה עוזרי",
-        dept: "Operations",
-        status: "Fixed"
-    },
-];
 // Function to render the table rows based on data
 function renderCalls(callsData) {
     var table = document.querySelector(".requests table");
