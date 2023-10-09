@@ -12,6 +12,7 @@ app.use(cookieParser());
 //static files
 app.use(express.static("public"));
 
+
 //body
 app.use(express.json());
 const { MONGO_URI } = process.env;
