@@ -1,0 +1,31 @@
+html {
+  font-size: 16px;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  background-color: #0783a9;
+  height: 100%;
+}
+html body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+html body form {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+html body form input {
+  height: 25px;
+  border-radius: 5px;
+}
+html body form button {
+  height: 28px;
+  border-radius: 6px;
+}
+html body form button:hover {
+  background-color: #cacdcd;
+  cursor: pointer;
+}
