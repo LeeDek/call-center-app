@@ -28,3 +28,16 @@ export const UserSchema = new Schema({
 export const UserModel = model("users", UserSchema)
 
 export const users: User[] = [];
+
+// async function buildAdmin(){
+//   const newUser =  new UserModel({userName:"admin",email:"admin@admin.com",password:"1234", role:Role.Admin, firstEntry:false}) 
+//  const userDB =  await newUser.save()
+//   console.log(userDB)
+// }
+// async function buildUser(){
+//   const newUser =  new UserModel({userName:"user5",email:"user5@user.com",password:"1234", role:Role.User, firstEntry:false}) 
+//  const userDB =  await newUser.save()
+//   console.log(userDB)
+// }
+// buildUser()
+// // buildAdmin()
