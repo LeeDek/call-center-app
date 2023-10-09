@@ -1,6 +1,22 @@
-enum Departments {
+import { Status } from '../API/enums/status';
+const callsData = [
+  {
+    date: "1-10-2023",
+    requestType: "אין מיזוג בבית הספר הדמוקרטי",
+    dept: "Operations",
+    status: "Fixed",
+  },
 
-}
+  {
+    date: "30-09-2023",
+    requestType: "משאית נתקעה ברחוב אהובה עוזרי",
+    dept: "Operations",
+    status: "Fixed",
+  },
+  // Add more call objects here
+];
+
+enum Departments {}
 
 interface Calls {
   id: string;
@@ -9,84 +25,77 @@ interface Calls {
   dep: Departments;
 }
 
-// Function to add a relative for a user
-// async function handleAddRelative(event) {
-//   try {
-//       event.preventDefault();
+const sortStatusButton = document.getElementById("sortStatus");
 
-//       const email = getEmailFromQuery();
-//       if (!email) throw new Error("No email");
+sortStatusButton.addEventListener("click", async () => {
+  const currentStatus = Status.Open;
+  try {
+    const response = await fetch("/api/calls/getCallsByStatus", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: currentStatus }),
+    });
+    const data = await response.json();
+    const callsDB = data.callsDB;
 
-//       const fullName = event.target.elements.fullName.value;
-//       const birthDate = event.target.elements.birthDate.value;
-//       const country = event.target.elements.country.value;
+    // Update the table with the sorted data
+    updateTableWithSortedData(callsDB);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
-//       // Cast the relationSelect element to HTMLSelectElement
-//       const relationSelect = <HTMLSelectElement>document.getElementById('relation');
-//       const selectedRelation = relationSelect.value;
+function updateTableWithSortedData(sortedData) {
+  const tableBody = document.querySelector("body > main > div > section > table > tbody");
+  tableBody.innerHTML = ""; // Clear existing rows
 
-//       if (!fullName || !birthDate || !country || selectedRelation === Relation.Choose) {
-//           throw new Error("Please complete all fields and select a valid relation");
-//       }
-
-//       // Associate the new relative with the user by using their email.
-//       const newRelative = {
-//           fullName: fullName,
-//           birthDate: birthDate,
-//           country: country,
-//           relation: selectedRelation,
-//           userEmail: email, // Include the selected relation
-//       };
-
-//       const response = await fetch('/API/relatives/add-relative', {
-//           method: 'POST',
-//           headers: {
-//               'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify(newRelative),
-//       });
-
-//       if (!response.ok) {
-//           throw new Error(`Server returned ${response.status} ${response.statusText}`);
-//       }
-
-//       const { relatives } = await response.json();
-//       console.log(relatives);
-
-//       await handleGetRelatives();
-
-//     } catch (error) {
-//       console.error(error);
-//   }
-// }
-
-// // Function to get user's relatives from the server
-// async function getRelativesFromServer(email: string) {
-//   try {
-//     const response = await fetch(`/API/relatives/get-user-relatives?email=${email}`);
-//     const data = await response.json();
-//     return data.relatives;
-//   } catch (error) {
-//     console.error(error);
-//     return [];
-//   }
-// }
-
-// // Render relatives to the screen
-// async function handleGetRelatives() {
-//   try {
-//     const email = getEmailFromQuery();
-//     if (!email) throw new Error("No email");
-//     const relatives = await getRelativesFromServer(email);
-//     console.log(relatives);
-//     renderRelatives(relatives, document.querySelector("#relatives"));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+  // Loop through sorted data and render rows
+  sortedData.forEach((call) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${call.date}</td>
+      <td>${call.dept}</td>
+      <td>${call.status}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+  updateTableWithSortedData(sortedData)
+}
 
 
-// function getEmailFromQuery() {
-//   const urlParams = new URLSearchParams(window.location.search);
-//   return urlParams.get('email');
-// }
+// Function to render the table rows based on data
+function renderCalls(callsData) {
+  const table= document.querySelector(".requests table");
+
+  // Clear the existing table rows
+  table.innerHTML = "";
+
+  // Loop through the calls data and create table rows
+  callsData.forEach((callsData) => {
+    const row = document.createElement("tr");
+
+    // Create table cells for each column
+    const dateCell = document.createElement("td");
+    dateCell.textContent = callsData.date;
+
+    const deptCell = document.createElement("td");
+    deptCell.textContent = callsData.dept;
+
+    const statusCell = document.createElement("td");
+    statusCell.textContent = callsData.status;
+    statusCell.classList.add("status", "clickable");
+
+    // Append the cells to the row
+    row.appendChild(dateCell);
+    row.appendChild(deptCell);
+    row.appendChild(statusCell);
+
+    // Append the row to the table body
+    table.appendChild(row);
+  });
+}
+
+// Call the render function with your data
+renderCalls(callsData);
