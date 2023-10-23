@@ -1,4 +1,6 @@
-import { Status } from '../API/enums/status';
+// import { Status } from "./status/status";
+
+// import { Status } from '../API/enums/status';
 const callsData = [
   {
     date: "1-10-2023",
@@ -67,28 +69,35 @@ function updateTableWithSortedData(sortedData) {
 
 // Function to render the table rows based on data
 function renderCalls(callsData) {
-  const table= document.querySelector(".requests table");
+  console.log("test")
+  const table= document.querySelector("tbody");
+  console.log(table)
 
   // Clear the existing table rows
-  table.innerHTML = "";
+  // table.innerHTML = "";
 
   // Loop through the calls data and create table rows
-  callsData.forEach((callsData) => {
+  callsData.forEach((callD) => {
     const row = document.createElement("tr");
+    console.log(row)
 
     // Create table cells for each column
     const dateCell = document.createElement("td");
-    dateCell.textContent = callsData.date;
+    dateCell.textContent = callD.date;
 
     const deptCell = document.createElement("td");
-    deptCell.textContent = callsData.dept;
+    deptCell.textContent = callD.dept;
+
+    const contentCell = document.createElement("td");
+    contentCell.textContent = callD.requestType;
 
     const statusCell = document.createElement("td");
-    statusCell.textContent = callsData.status;
+    statusCell.textContent = callD.status;
     statusCell.classList.add("status", "clickable");
 
     // Append the cells to the row
     row.appendChild(dateCell);
+    row.appendChild(contentCell );
     row.appendChild(deptCell);
     row.appendChild(statusCell);
 

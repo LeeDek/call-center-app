@@ -1,4 +1,4 @@
-"use strict";
+// import { Status } from "./status/status";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,8 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-var status_1 = require("../API/enums/status");
+var _this = this;
+// import { Status } from '../API/enums/status';
 var callsData = [
     {
         date: "1-10-2023",
@@ -55,12 +55,12 @@ var Departments;
 (function (Departments) {
 })(Departments || (Departments = {}));
 var sortStatusButton = document.getElementById("sortStatus");
-sortStatusButton.addEventListener("click", function () { return __awaiter(void 0, void 0, void 0, function () {
+sortStatusButton.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
     var currentStatus, response, data, callsDB, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                currentStatus = status_1.Status.Open;
+                currentStatus = Status.Open;
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 4, , 5]);
@@ -101,22 +101,28 @@ function updateTableWithSortedData(sortedData) {
 }
 // Function to render the table rows based on data
 function renderCalls(callsData) {
-    var table = document.querySelector(".requests table");
+    console.log("test");
+    var table = document.querySelector("tbody");
+    console.log(table);
     // Clear the existing table rows
-    table.innerHTML = "";
+    // table.innerHTML = "";
     // Loop through the calls data and create table rows
-    callsData.forEach(function (callsData) {
+    callsData.forEach(function (callD) {
         var row = document.createElement("tr");
+        console.log(row);
         // Create table cells for each column
         var dateCell = document.createElement("td");
-        dateCell.textContent = callsData.date;
+        dateCell.textContent = callD.date;
         var deptCell = document.createElement("td");
-        deptCell.textContent = callsData.dept;
+        deptCell.textContent = callD.dept;
+        var contentCell = document.createElement("td");
+        contentCell.textContent = callD.requestType;
         var statusCell = document.createElement("td");
-        statusCell.textContent = callsData.status;
+        statusCell.textContent = callD.status;
         statusCell.classList.add("status", "clickable");
         // Append the cells to the row
         row.appendChild(dateCell);
+        row.appendChild(contentCell);
         row.appendChild(deptCell);
         row.appendChild(statusCell);
         // Append the row to the table body
